@@ -1,0 +1,6 @@
+ntldd:显示程序依赖的库
+set:dos下显示所有的环境变量
+curl：url测试工具
+winver：显示系统版本号
+upgrade：windows跟新命令
+wrk:
