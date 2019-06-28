@@ -3,39 +3,25 @@ layout: page
 title: 关于我 
 ---
 
-一个 iOS SDK 开发者，喜欢研究一些新技术。
-<p>
-平时喜欢整理个人博客，逛逛技术论坛。
-<p>
-了解一些 前端 基本概念和 Python 的简单用法。
+我是一个全栈工程师  
+  
+C/C++开发6+年，GO开发1+年，Python开发1+年，懂一些前端东西<br><br>
+从事前端媒体相关工作2+年(包含MFC客户端、ffmepg解码的PC播放器)<br><br>
+后台媒体服务4年(包括流媒体服务器、编解码服务器)<br><br>
 
-<p>
+熟悉下边相关技能:
+1，编解码相关：ffmpeg、h264、h265、GPU(intel+nvidia)、webrtc、AAC、G711、MP4、TS等<br><br>
+2，协议相关：rtsp、rtmp、hls(http)、rtp(rtcp)、h323、sip、GB28181,其中rtsp/rtmp/hls/rtp较熟悉，h323/SIP/GB28181次之。熟练掌握各种协议数据的格式封装和各格式之间的转换。<br><br>
+3，架构相关：gstreamer、opencl、opencv、ACE、libuv、gobject<br><br>
+4，渲染相关：ddrow、GDI、D3D等<br><br>
+5，语言相关：熟练掌握C/C++语言，熟悉python、SQL、Matlab、MFC<br><br>
 
-<h3> 我们的博客 </h3>  
-
-<p>
-
-是的，这个博客是我们大家的，目前已经有很大一部分人在使用我的博客模板了，我也很高兴大家使用我的模板。
-
-<p>
-
-如果你想搭建一个跟我一样的博客，可以看我的 
-<a href="/2016/10/jekyll_tutorials1/"> Jekyll 搭建个人博客 </a>
-教程
-
-<p>
-
-有关于博客主题的建议和意见都可以提给我，让我们一起来打造一个精美的主题吧~ 
-
-<p> 
-
-博客源码在 <a target="_blank" href='https://github.com/leopardpan/leopardpan.github.io/'>Github</a> 上，你的 Star 是我更新的动力，谢谢~
-
-<p> 
-
-<p> 
-
-<p> 
+熟练使用
+Visual Studio2008~2015的IDE<br>
+makefile、cmake、gdb、wireshark、Audacity、MP4Reader、Elecard、VLC等工具<br>
+XML、JSON等相关结构<br>
+TCP/IP协议、TCP、UDP底层协议<br>
+熟悉C/S架构、B/S架构、MVC以及常用的其它设计模式<br>
 
 
 {% include comments.html %}
