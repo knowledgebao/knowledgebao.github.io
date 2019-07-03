@@ -1,1 +1,0 @@
-http://docscn.studygolang.com/pkg/time/
