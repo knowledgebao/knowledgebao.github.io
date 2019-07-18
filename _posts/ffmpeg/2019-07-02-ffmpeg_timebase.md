@@ -1,3 +1,11 @@
+---
+layout: post
+title: ffmpeg_timebase
+date: 2019-07-02 12:06:40
+description: ffmpeg_timebase
+tag: ffmpeg
+
+---
 # time_base
 AVRational time_base
 ```
