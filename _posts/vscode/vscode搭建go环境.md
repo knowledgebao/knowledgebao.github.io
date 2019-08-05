@@ -1,0 +1,62 @@
+# Go-vscode.go插件:
+
+gocode:
+gogetdoc:
+godef+go doc:
+guru:
+go-outline:
+go-symbols:
+goreturns:
+goimports:
+gofmt:
+gorename:
+diff:
+gopkgs:
+gomodifytags:
+impl:
+fillstruct:
+go build:
+go test: 
+go vet:
+golint, gometalinter, staticcheck, golangci-lint or revive:
+gotype-live:
+gotests:
+delve:
+goplay:
+dlv:
+gocode-gomod:
+godoctor:
+Golang的gRPC：
+govendor:
+为什么nil != nil了？
+static type是你在编码是看见的类型(如int、string)？
+concrete type是runtime系统看见的类型？
+
+
+GOLANG STRING和[]BYTE的对比
+https://www.cnblogs.com/zhangboyu/p/7623712.html
+
+golang中defer的使用规则
+https://studygolang.com/articles/10167
+
+理解go的function types
+https://www.jianshu.com/p/fc4902159cf5
+类似于C中的函数指针，C++中的多态概念
+
+标准库—命令行参数解析FLAG
+http://blog.studygolang.com/2013/02/%E6%A0%87%E5%87%86%E5%BA%93-%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90flag/
+
+Go语言的标识符、关键字、字面量、类型
+https://studygolang.com/articles/1343
+
+Golang的反射reflect深入理解和示例
+https://studygolang.com/articles/17496
+
+可能是最好的函数式编程入门
+https://www.jianshu.com/p/390147c78967
+
+Go 语言中的 new() 和 make()的区别
+https://studygolang.com/articles/3496
+
+Go 1.9 sync.Map揭秘
+https://segmentfault.com/a/1190000010294041
