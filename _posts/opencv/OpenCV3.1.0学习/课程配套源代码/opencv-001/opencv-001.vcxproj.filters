@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="chapter">
+      <UniqueIdentifier>{02a0011f-78e8-49cc-befb-70929f275b4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="main-001.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-002.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-003.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-004.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-005.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-006.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-007.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-008.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-009.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-010.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-011.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-012.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-013.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-014.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-015.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-016.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-017.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-018.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-019.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-020.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-021.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-022.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-023.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-024.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-025.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-026.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-027.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-028.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-029.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-030.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-031.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-032.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-033.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-034.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+    <ClCompile Include="main-035.cpp">
+      <Filter>chapter</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="chapter.h">
+      <Filter>chapter</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,151 @@
+0000   00 00 01 ba  												     		   	(4B)//PS Header包的开始码
+									 76 e9 d4 f2 e4 01 01 39 9f						(9B)01(2b),SCR(3b),Marker(1b),SRC(15b),Marker(1b),SRC(15b),Marker(1b)
+									 																			,SCRE(9b)，Marker(1b),MUXRate(22b),Marker(1b),Marker(1b)具体详见标准 
+																							fe				(1B:11111110)填充(5b)+扩展长度(3b:6B)
+																								 ff ff	(6B)扩充位。
+0010   01 f7 ec ba																			
+																												//PS Header结束。长度没有给出，需要计算
+									 00 00 01 bb 													(4B)//PS system header开始位
+															 00 12										(2B)长度
+																		  80 9c cf					(3B)Marker(1b),速率界限(22b),Marker(1b).
+																							 04 e1    (2B)音频界限(6b);变码率(1b);CSPS标记(1b);系统音频锁定标记(1b); 
+																							 							系统视频锁定标记(1b);Marker(1b);视频界限(5b)
+																										 7f	(1B)packet_rate_restriction_flag和CSPS有关(1b);Reserved(7b)
+0020   e0 e0 80 c0 c0 08 bd e0 80 bf e0 80  						(12B)见下边函数，需要考虑PS system的总长度。
+																												while (nextbit () == '1') {
+              																									stream_id 8b;
+              																									'11' 2b;
+              																									P-STD_buffer_bound_scale 1b;
+              																									P-STD_buffer_size_bound 13b;
+																												}//3B
+																												e   0    e     0   8   0   
+																												11100000 11 1 0000010000000
+																												c   0    c     0   0   8
+																												11000000 11 0 000000001000
+																												b   d    e     0   8   0
+																												10111101 11 1 0000010000000
+																												b   f    e     0   8   0
+																												10111111 11 1 0000010000000
+																												//PS system header结束，内容总长度：00 12
+																												
+																					 00 00 01 bc	(4B)//PS system Map开始位(3B),map_stream_id(1B)must is 'BC'
+0030   00 5e 																					  (2B)长度
+						 ff ff																			(2B:)current_next_indicator(1b);reserved(2b);program_stream_map_version(5b);reserved(7b);Marker(1b);
+									 00 24 																(2B)基本流长度，program_stream_info_length 
+									 																			for(i=0;i<N;i++){
+									 																				descriptor();
+									 																			}
+									 			 40 0e 48 4b 01 00 10 59 44 61	(24B)流内容,descriptor();
+0040   a3 c7 00 ff ff ff 41 12 48 4b 00 01 02 03 04 05 
+0050   06 07 08 09 0a 0b 0c 0d 0e 0f 										
+																		 00 30     				  (2B)基本流长度，elementary_stream_map_length
+																		 										for (i = 0; i < N1; i++) {
+																		 											stream_type(8b)
+																		 											elementary_stream_id(8b)
+																		 											elementary_stream_info_length(16b)
+																		 											for (i = 0; i < N2; i++) { 
+																		 												descriptor();
+																		 											}
+																		 			 1b						(1B)h264，H.264视频流：0x1B；G.711音频流：0x90；
+																		 					e0				(1B)视频，(C0~DF)指音频，(E0~EF)为视频。
+																		 						 00 1c	(2B)长度
+0060   42 0e 07 10 10 ea 05 00 02 d0 11 3f 00 00 1c 21  (1c)流内容descriptor()
+0070   2a 0a 7f ff 00 00 07 08 1f fe a0 5a 
+																												分析descriptor()
+																																			
+																					 0f      			(1B)私有音频协议
+																					 		c0				(1B)音频，(C0~DF)指音频，(E0~EF)为视频。
+																					 			 00 0c	(2B)长度
+0080   43 0a 00 90 fe 00 fa 03 01 f4 03 ff							(0c)流内容descriptor()
+																					 72 e6 fa 42  (4B)CRC，循环冗余校验;
+																					 							//PS system Map结束。内容总长度00 5e
+																					 							
+0090   00 00 01                   											(3B)PES Header包的开始码
+								e0																			(1B)流ID，(C0~DF)指音频，(E0~EF)为视频。
+									 00 22																(2B)后边PES长度PES_packet_length 
+												 8c	80													(2B)10(2b);PES加扰控制(2b);PES优先(1b);数据定位指示符(1b);版权(1b);原版或拷贝(1b);
+												 																PTS/DTS标志(2b:10);ESCR标志(1b);ES rate(1b);
+												 																DSM特技方式标志(1b);附加的信息拷贝(1b);CRC flag(1b);PES扩展标志(1b)
+															 07												(1B)PES扩展字段长度。
+									 								2d ba 75 3c b9 ff fc	(7B)PES扩展内容。
+00a0   00 00 00 01 67 64 00 1f ac 17 2a 01 40 16 e8 40   
+00b0   00 01 c2 00 00 57 e4 21 													(18)PES内容，实际为SPS
+																											  //PES 包结束
+															 00 00 01 e0 00 0e 8c 00  又一个PES包，内容为PPS
+00c0   03 ff ff fc 00 00 00 01 68 fe 38 b0 
+																					 00 00 01 e0  又一个PES包，内容为I帧   
+00d0   ff d2 8c 00 02 ff fd 00 00 00 01 65 88 80 00 80  
+00e0   21 7f ec e4 67 40 35 b5 c9 3b 1b df 2f 96 92 45 
+00f0   92 29 33 df 5a fd 66 20 f1 b7 1d 11 2e f5 52 83 
+0100   02 84 34 e0 18 35 24 c9 b0 7f ec 09 b7 f9 12 37 
+0110   cb 05 bb 12 13 5a 9d d7 ba a8 99 2a 30 f7 1e a4 
+0120   0f 3e a8 ac 37 03 bc 6d e8 a6 d7 64 d2 24 ec b8 
+0130   33 4b ad ee 67 c9 c9 b3 27 34 24 73 85 8c 67 75 
+0140   75 bc 9d bb 87 e6 4f 53 68 e2 e3 8e 7c 90 99 bb 
+0150   d5 3c a2 68 68 c9 b6 df 80 a4 97 ef b5 e2 72 db 
+0160   98 be 62 ba 5f 26 dc 20 0f 5f 49 71 fc 5b be 3c 
+0170   4f f9 11 38 15 d4 88 94 9e 14 9d 03 4d 69 d3 1f 
+0180   27 95 e6 33 36 c5 6d 02 68 09 0e ba 12 30 f7 cd 
+0190   34 f9 03 e2 c6 03 f1 64 81 dd c0 9c d2 d5 2d 68 
+01a0   e8 8c 30 19 4c 57 c2 1a 92 cc 4c 5a 17 97 af 0a 
+01b0   b1 35 62 9b ed ea 3f d6 e3 31 db 5d 1d c0 a1 94 
+01c0   1f a4 05 52 bf 32 c5 cd 75 bb 3b 4d 38 47 16 81 
+01d0   d7 ac 19 51 f3 06 8b 5a f1 df e3 f0 f7 04 59 f4 
+01e0   50 70 cf 63 99 93 f0 b9 7e 3e af 4e af 8a e6 c0 
+01f0   71 61 d5 72 ea b9 9f f4 2a 36 65 7d 6b a3 dd 11 
+0200   2a 28 63 01 48 32 e5 d7 79 3f 97 6a 84 9d 3b ec 
+0210   61 cc b9 7b 96 8e 6a 22 cc 71 86 62 9c 5e e1 f1 
+0220   ff 03 c5 88 d0 b7 4f e0 36 ac 92 04 73 1f 65 46 
+0230   ae d0 22 0e ff 00 25 7f 78 39 d7 dd 6e 83 db 07 
+0240   af 99 af fc de 29 2d cb 61 15 7f ef 70 33 84 35 
+0250   41 f6 46 d4 bd 60 fa 24 25 0a f4 fe 82 27 a7 75 
+0260   5f 76 dd bc a8 7d 27 ae e7 9c 23 21 d6 df d1 d8 
+0270   8f fb 48 1f e1 d9 29 30 cb 41 64 d2 4a 63 38 20 
+0280   01 56 a4 2a 8b 06 2a 27 b4 b9 e0 c0 88 67 e4 46 
+0290   10 c9 9a 9d 21 cc 5e a3 d3 a3 35 48 5f 5e a2 19 
+02a0   44 ae c3 da ab ee 37 9f 1e 5a 3a 41 7d 22 d8 ea 
+02b0   7b 61 22 b7 7f 7a eb 27 43 5b 7f 7a 0b 77 bf b8 
+02c0   16 21 71 c4 5c 66 c0 f0 44 90 4f 8d 50 03 23 e9 
+02d0   52 00 e7 d6 33 24 a3 e1 aa 31 cd 12 f3 9b ce 16 
+02e0   22 f1 b8 35 47 4b 01 06 0a 65 96 79 3c 8a 74 91 
+02f0   37 7e 0e a9 ba 44 01 6c a6 71 e0 6c e7 f8 5c 69 
+0300   d7 ba cb 54 4a 4d 46 6a 92 9f 6e 75 81 7e f8 49 
+0310   92 5f 05 a0 3c 9d e5 23 cf 4e 41 8f 60 c0 36 97 
+0320   12 36 7e 76 81 4e a0 c2 e7 53 ab bc 18 9e c1 84 
+0330   15 b8 86 3b 00 60 3f 4c 78 56 df 24 97 9c 9d c5 
+0340   ed ae c5 a3 ad 3c 05 53 d1 44 de 9a 3c e0 09 47 
+0350   ea 1d 1e 1e 59 04 69 0e 0e 38 44 86 2b 72 9b d0 
+0360   9e d6 29 6f 02 8b 31 88 7e c0 3b 3f e6 1b c4 83 
+0370   92 50 0f 31 27 02 2f 51 f6 41 0b f9 09 b1 61 55 
+0380   51 b9 a4 37 9c 09 4e 33 cb 40 7c bd 51 24 e0 8f 
+0390   f2 43 12 6e 3a 4d c7 d4 c7 00 3e 43 a3 34 cd bd 
+03a0   93 a8 1c ab 72 a4 0a 01 d3 cb 24 80 a8 39 2d 09 
+03b0   bb be 47 31 5f cc 8b c9 28 23 f8 3a 92 5b 88 8a 
+03c0   4d fc 54 d4 a6 24 d2 b6 5b 44 94 bf 23 d0 fc 6d 
+03d0   82 1e c0 08 09 ee 18 f0 42 e7 c8 b5 3d 5f e4 b4 
+03e0   6a 7d 7e e7 37 18 61 14 9a 48 b1 bb da 02 4d 05 
+03f0   31 2c cd b3 ba 85 10 c0 27 6a ba 89 49 38 f3 37 
+0400   53 7f 8c a9 ae 41 40 a6 6f 7c 19 ae 4b b0 ae 0e 
+0410   7b c0 e2 62 a5 3b 85 07 77 82 df 22 5c ce 2e ca 
+0420   fa af 52 d8 5b d6 dc 66 48 8f f7 ef 8f 65 c7 12 
+0430   9e 11 d2 d0 2d db 39 f3 73 b9 f1 e7 1f 1c ee 3c 
+0440   be 61 6d 70 35 48 b3 e3 d2 d5 02 f4 1e 8b e8 30 
+0450   02 1e af 04 1a f8 0b f4 86 93 c7 0c 56 b6 1d a3 
+0460   6d cc 27 3a a4 9f 27 46 52 e0 42 2e 7c 6d af 89 
+0470   99 37 5a 4e d0 02 d3 b1 77 06 60 cf 27 b8 c0 54 
+0480   3a b8 3a 4c 61 39 4f 19 c2 71 2b 41 ec 17 46 40 
+0490   b0 49 1e ae a5 dc 79 72 11 b7 cb 5b 62 ad 17 6b 
+04a0   57 94 3a d4 c9 0f eb d4 0b 48 8b e7 2f dd c6 d9 
+04b0   37 59 cc 9d 72 3a c6 a5 1d ce bd 45 c7 33 12 f9 
+04c0   f7 14 04 57 01 38 aa eb 0e 50 f5 e5 17 97 73 06 
+04d0   31 08 a0 02 1b bf eb 2a db 43 39 df 8c 13 93 2f 
+04e0   fe 73 61 66 80 bd 9c 1a b3 76 d3 14 7b 40 c3 9d 
+04f0   bc 8b fa ec 31 4f f4 84 a2 67 62 d5 4d 76 d9 b3 
+0500   85 8b c8 23 d2 3f fe 73 ee 60 4e 56 e3 c9 20 73 
+0510   69 ad 5f 48 29 a4 7a 1e ef a7 75 ad 40 c3 1b a5 
+0520   e7 c6 be a2 be 29 a3 01 ce e3 49 77 c7 71 c8 23 
+0530   ce f0 58 aa 2f 3a 5b 78 39 b0 51 d5 c7 27 b7 be 
+0540   a2 49 1d 7f bd 0b 7b c7 5b 25 7d e6 a6 91 0b d5 
+0550   63 8b 93 f6 bf 2c f2 6f 92 bf 72 28 12 8e 9d c3 
+0560   4e 42 00 6a 7d 4d 6e 3c f2 e1 3f b4 89 e2 b0 4e 
+0570   22 1e 93 38 b2 14 7b b9 ...                       
