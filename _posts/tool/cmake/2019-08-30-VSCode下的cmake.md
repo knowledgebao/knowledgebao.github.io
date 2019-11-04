@@ -1,11 +1,12 @@
 ---
 layout: post
 title: VSCode下的cmake
-date: 2019-08-08 15:06:00
+date: 2019-10-22 16:41:40
 description: VSCode下的cmake
 tag: cmake
 
 ---
+
 build
 configure
 Scan for Kits
