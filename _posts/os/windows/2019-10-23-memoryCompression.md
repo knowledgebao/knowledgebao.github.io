@@ -1,11 +1,12 @@
 ---
 layout: post
 title: memoryCompression
-date: 2019-10-23 18:48:04
+date: 2019-11-01 10:13:59
 description: memoryCompression
 tag: windows
 
 ---
+
 - [memory compression](#memory-compression)
   - [简介](#简介)
   - [Is Compressed Memory Bad?](#is-compressed-memory-bad)

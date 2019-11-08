@@ -1,11 +1,12 @@
 ---
 layout: post
 title: ffmpeg_timebase
-date: 2019-07-05 20:59:09
+date: 2019-11-01 10:13:58
 description: ffmpeg_timebase
 tag: ffmpeg
 
 ---
+
 
 # time_base
 AVRational time_base

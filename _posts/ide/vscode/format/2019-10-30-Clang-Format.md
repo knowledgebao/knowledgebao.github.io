@@ -1,11 +1,12 @@
 ---
 layout: post
 title: Clang-Format
-date: 2019-10-30 18:24:40
+date: 2019-11-01 15:46:22
 description: Clang-Format
 tag: format
 
 ---
+
 # Clang-Format
 
 - [Clang-Format](#clang-format)

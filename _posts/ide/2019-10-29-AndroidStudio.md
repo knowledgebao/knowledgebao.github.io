@@ -1,11 +1,12 @@
 ---
 layout: post
 title: AndroidStudio
-date: 2019-10-29 10:10:20
+date: 2019-11-01 10:13:58
 description: AndroidStudio
 tag: ide
 
 ---
+
 # AndroidStudio
 
 - [AndroidStudio](#androidstudio)

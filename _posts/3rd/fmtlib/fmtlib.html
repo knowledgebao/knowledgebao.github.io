@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>1. fmtlib</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="1-fmtlib">1. fmtlib</h1>
+<ul>
+<li><a href="#1-fmtlib">1. fmtlib</a>
+<ul>
+<li><a href="#11-%E7%AE%80%E4%BB%8B">1.1. 简介</a></li>
+<li><a href="#12-%E7%89%B9%E5%BE%81">1.2. 特征</a></li>
+<li><a href="#13-%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85">1.3. 编译安装</a></li>
+<li><a href="#14-api">1.4. API</a>
+<ul>
+<li><a href="#141-core-api">1.4.1. Core API</a>
+<ul>
+<li><a href="#1411-format%E5%92%8Cprint">1.4.1.1. format和print</a></li>
+<li><a href="#1412-%E5%91%BD%E5%90%8D%E5%8F%82%E6%95%B0">1.4.1.2. 命名参数</a></li>
+<li><a href="#1413-%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8">1.4.1.3. 参数列表</a></li>
+<li><a href="#1414-%E5%85%BC%E5%AE%B9%E6%80%A7">1.4.1.4. 兼容性</a></li>
+</ul>
+</li>
+<li><a href="#142-format-api">1.4.2. Format API</a>
+<ul>
+<li><a href="#1421-%E7%BC%96%E8%AF%91%E6%97%B6%E6%A3%80%E6%9F%A5">1.4.2.1. 编译时检查</a></li>
+<li><a href="#1422-%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B">1.4.2.2. 格式化用户自定义类型</a></li>
+<li><a href="#1423-%E8%BF%AD%E4%BB%A3%E5%99%A8%E8%BE%93%E5%87%BA%E6%94%AF%E6%8C%81">1.4.2.3. 迭代器输出支持</a></li>
+<li><a href="#1424-%E5%9F%BA%E4%BA%8E%E5%AD%97%E9%9D%A2%E9%87%8F%E7%9A%84">1.4.2.4. 基于字面量的</a></li>
+<li><a href="#1425-%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%85%B7%E9%9B%86">1.4.2.5. 使用工具集</a></li>
+<li><a href="#1426-%E7%B3%BB%E7%BB%9F%E9%94%99%E8%AF%AF">1.4.2.6. 系统错误</a></li>
+<li><a href="#1427-%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%86%E9%85%8D%E5%99%A8">1.4.2.7. 用户自定义分配器</a></li>
+<li><a href="#1428-%E7%94%A8%E6%88%B7%E5%86%85%E5%BB%BA%E6%A0%BC%E5%BC%8F%E5%8C%96">1.4.2.8. 用户内建格式化</a></li>
+</ul>
+</li>
+<li><a href="#143-%E6%97%A5%E6%9C%9F%E5%92%8C%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E5%8C%96">1.4.3. 日期和时间格式化</a>
+<ul>
+<li><a href="#1431-stdostream%E7%9A%84%E6%94%AF%E6%8C%81">1.4.3.1. std::ostream的支持</a></li>
+<li><a href="#1432-printf%E6%A0%BC%E5%BC%8F%E5%8C%96">1.4.3.2. printf格式化</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#15-format%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AF%AD%E6%B3%95">1.5. Format字符串语法</a></li>
+<li><a href="#16-%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F%E8%AF%B4%E6%98%8E">1.6. 输出格式说明</a></li>
+<li><a href="#17-%E4%B8%BE%E4%BE%8B">1.7. 举例</a></li>
+<li><a href="#18-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">1.8. 参考资料</a></li>
+<li><a href="#19-%E9%97%AE%E9%A2%98%E9%9B%86">1.9. 问题集</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="11-简介">1.1. 简介</h2>
+<p>fmt是一个开放源码的格式库。 它可以作为printf的安全替代，或者作为IOStreams的快速替代。</p>
+<h2 id="12-特征">1.2. 特征</h2>
+<ul>
+<li>易用的format API,可以通过数字定位位置。</li>
+<li>字符串格式化语法类似于Python中的str.format方便。</li>
+<li>安全的printf实现，包括定位参数的POSIX扩展。</li>
+<li>实现了 c++ 20 std::format。</li>
+<li>支持用户自定义类型。</li>
+<li>高性能: 比一般标准的printf和iostreams库实现更快。</li>
+<li>代码量比较小(最小配置只包含三个头文件)。</li>
+<li>可靠性:该库具有额外的单元测试集。</li>
+<li>安全性:库是完全类型安全的，可以在编译时报告格式字符串中的错误，自动内存管理可以防止缓冲区溢出错误。</li>
+<li>易用性:小型自包含代码库，没有外部依赖，允许MIT许可</li>
+<li>具有跨平台一致输出的可移植性，并支持较老的编译器。</li>
+<li>干净无警告的代码基，即使在高警告级别(-Wall -Wextra -pedantic)。</li>
+<li>支持宽字符串。</li>
+<li>使用FMT_HEADER_ONLY宏，可以启用只包含头文件(头文件实现)。</li>
+</ul>
+<h2 id="13-编译安装">1.3. 编译安装</h2>
+<p>详见参考资料中的<a href="https://fmt.dev/latest/usage.html">编译安装</a></p>
+<h2 id="14-api">1.4. API</h2>
+<ul>
+<li>fmt/core.h: 核心API提供了参数处理功能和格式化功能的轻量级子集</li>
+<li>fmt/format.h: 提供编译时格式字符串检查、输出迭代器和用户定义类型支持的完整格式API</li>
+<li>fmt/chrono.h: 日期和时间格式</li>
+<li>fmt/ostream.h: std::ostream 支持</li>
+<li>fmt/printf.h: printf 格式化</li>
+</ul>
+<p>库提供的所有函数和类型都位于名称空间fmt中，宏的前缀都是FMT_或fmt。</p>
+<h3 id="141-core-api">1.4.1. Core API</h3>
+<p>fmt/core.h 定义了核心API，它提供了参数处理功能和格式化功能的一个轻量级子集。</p>
+<h4 id="1411-format和print">1.4.1.1. format和print</h4>
+<p>以下函数使用类似于Python的str.format的格式字符串语法。它们将format_str和args作为参数。
+format_str是一个格式字符串，它包含format文本和由大括号{}包围的替换字段。字段被结果字符串中的格式化参数替换。
+args是表示要格式化的对象的参数列表。</p>
+<pre><code class="language-C++"><div><span class="hljs-comment">//return std::string</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> S, <span class="hljs-keyword">typename</span>... Args, <span class="hljs-keyword">typename</span> Char = <span class="hljs-keyword">char_t</span>&lt;S&gt;&gt;
+<span class="hljs-built_in">std</span>::basic_string&lt;Char&gt; fmt::format(<span class="hljs-keyword">const</span> S &amp;format_str, Args&amp;&amp;... args)¶
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> S, <span class="hljs-keyword">typename</span> Char = <span class="hljs-keyword">char_t</span>&lt;S&gt;&gt;
+<span class="hljs-built_in">std</span>::basic_string&lt;Char&gt; fmt::vformat(<span class="hljs-keyword">const</span> S &amp;format_str, basic_format_args&lt;buffer_context&lt;Char&gt;&gt; args)
+
+#include &lt;fmt/core.h&gt;
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> message = fmt::format(<span class="hljs-string">"The answer is {}"</span>, <span class="hljs-number">42</span>);
+
+<span class="hljs-comment">//Prints formatted data to stdout.</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> S, <span class="hljs-keyword">typename</span>... Args&gt;
+<span class="hljs-keyword">void</span> fmt::print(<span class="hljs-keyword">const</span> S &amp;format_str, Args&amp;&amp;... args)¶
+<span class="hljs-keyword">void</span> fmt::vprint(string_view format_str, format_args args)
+
+fmt::print(<span class="hljs-string">"Elapsed time: {0:.2f} seconds"</span>, <span class="hljs-number">1.23</span>);
+
+<span class="hljs-comment">//Prints formatted data to the file f</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> S, <span class="hljs-keyword">typename</span>... Args&gt;
+<span class="hljs-keyword">void</span> fmt::print(<span class="hljs-built_in">std</span>::FILE *f, <span class="hljs-keyword">const</span> S &amp;format_str, Args&amp;&amp;... args)
+<span class="hljs-keyword">void</span> fmt::vprint(<span class="hljs-built_in">std</span>::FILE *f, string_view format_str, format_args args)
+<span class="hljs-keyword">void</span> fmt::vprint(<span class="hljs-built_in">std</span>::FILE *f, wstring_view format_str, wformat_args args)<span class="hljs-comment">// For wide format strings, f should be in wide-oriented mode set via fwide(f, 1) or _setmode(_fileno(f), _O_U8TEXT) on Windows</span>
+
+fmt::print(<span class="hljs-built_in">stderr</span>, <span class="hljs-string">"Don't {}!"</span>, <span class="hljs-string">"panic"</span>);
+</div></code></pre>
+<h4 id="1412-命名参数">1.4.1.2. 命名参数</h4>
+<pre><code class="language-C++"><div><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> S, <span class="hljs-keyword">typename</span> T, <span class="hljs-keyword">typename</span> Char = <span class="hljs-keyword">char_t</span>&lt;S&gt;&gt;
+internal::named_arg&lt;T, Char&gt; fmt::arg(<span class="hljs-keyword">const</span> S &amp;name, <span class="hljs-keyword">const</span> T &amp;arg)
+
+fmt::print(<span class="hljs-string">"Elapsed time: {s:.2f} seconds"</span>, fmt::arg(<span class="hljs-string">"s"</span>, <span class="hljs-number">1.23</span>));
+</div></code></pre>
+<p>返回格式化函数中使用的命名参数。
+已命名的参数持有引用，并且不延长其参数的生存期。因此，可能会意外地创建悬空引用。
+命名参数目前不支持编译时检查。</p>
+<h4 id="1413-参数列表">1.4.1.3. 参数列表</h4>
+<ul>
+<li>class fmt::format_arg_store
+参数的引用数组。它可以隐式地转换为basic_format_args，以便传递到类型擦除的格式化函数，如vformat()。</li>
+<li>fmt::make_format_args<br>
+构造一个format_arg_store对象，该对象包含对参数的引用，可以隐式地转换为format_args。上下文可以省略，在这种情况下，它使用默认的上下文。构建参数后，可用于后续格式化操作。</li>
+<li>class fmt::basic_format_args
+格式化参数类</li>
+<li>fmt::format_args
+An alias to <code>basic_format_args&lt;context&gt;</code></li>
+</ul>
+<pre><code class="language-C++"><div><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> Context = format_context, <span class="hljs-keyword">typename</span>... Args&gt;
+format_arg_store&lt;Context, Args...&gt; fmt::make_format_args(<span class="hljs-keyword">const</span> Args&amp;... args)
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> Context, <span class="hljs-keyword">typename</span>... Args&gt;
+class fmt::format_arg_store{}
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> Context&gt;
+class fmt::basic_format_args{}
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span>... Args&gt;
+basic_format_args(<span class="hljs-keyword">const</span> format_arg_store&lt;Context, Args...&gt; &amp;store)
+
+basic_format_args(<span class="hljs-keyword">const</span> format_arg *args, <span class="hljs-keyword">int</span> count)
+
+format_arg get(<span class="hljs-keyword">int</span> index) <span class="hljs-keyword">const</span>
+
+struct fmt::format_args
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> Context&gt;
+class fmt::basic_format_arg
+</div></code></pre>
+<h4 id="1414-兼容性">1.4.1.4. 兼容性</h4>
+<p>实现std::basic_string_view类，兼容C++17.
+提供了标准的一个子集，用于高性能格式化。</p>
+<pre><code class="language-C++"><div><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> Char&gt;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">fmt</span>:</span>:basic_string_view{}
+basic_string_view(<span class="hljs-keyword">const</span> Char *s, <span class="hljs-keyword">size_t</span> count)<span class="hljs-comment">//C风格构造</span>
+basic_string_view(<span class="hljs-keyword">const</span> Char *s)<span class="hljs-comment">//字符串构造</span>
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> Alloc&gt;
+basic_string_view(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::basic_string&lt;Char, Alloc&gt; &amp;s)
+
+<span class="hljs-function"><span class="hljs-keyword">const</span> Char *<span class="hljs-title">data</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span><span class="hljs-comment">//Returns a pointer to the string data.</span>
+size_t <span class="hljs-title">size</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span><span class="hljs-comment">//Returns the string size.</span>
+
+<span class="hljs-keyword">using</span> fmt::string_view </span>= <span class="hljs-keyword">typedef</span> basic_string_view&lt;<span class="hljs-keyword">char</span>&gt;
+<span class="hljs-keyword">using</span> fmt::wstring_view = <span class="hljs-keyword">typedef</span> basic_string_view&lt;<span class="hljs-keyword">wchar_t</span>&gt;
+</div></code></pre>
+<h3 id="142-format-api">1.4.2. Format API</h3>
+<p>fmt/format.h 提供了完整的API实现，支持编译时字符串格式检查、输出迭代器和用户定义类型。</p>
+<h4 id="1421-编译时检查">1.4.2.1. 编译时检查</h4>
+<p>通过使用 FMT_STRING(s) 和 fmt(s) 来做编译时检查，fmt定义FMT_STRING_ALIAS才有效(必须在)<code>#include &lt;fmt/format.h&gt;</code>之前定义</p>
+<pre><code class="language-C++"><div><span class="hljs-comment">// A compile-time error because 'd' is an invalid specifier for strings.</span>
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> s = format(FMT_STRING(<span class="hljs-string">"{:d}"</span>), <span class="hljs-string">"foo"</span>);
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> FMT_STRING_ALIAS 1</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fmt/format.h&gt;</span></span>
+<span class="hljs-comment">// A compile-time error because 'd' is an invalid specifier for strings.</span>
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> s = format(fmt(<span class="hljs-string">"{:d}"</span>), <span class="hljs-string">"foo"</span>);
+</div></code></pre>
+<h4 id="1422-格式化用户自定义类型">1.4.2.2. 格式化用户自定义类型</h4>
+<p>为了实现用户自定义类型格式化，需要实现 <code>formatter&lt;T&gt;</code> 结构,并且实现其 parse 和 format 方法，如下：</p>
+<pre><code class="language-C++"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fmt/format.h&gt;</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">point</span> {</span> <span class="hljs-keyword">double</span> x, y; };
+
+<span class="hljs-keyword">namespace</span> fmt {
+<span class="hljs-keyword">template</span> &lt;&gt;
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">formatter</span>&lt;point&gt; {</span>
+  <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> ParseContext&gt;
+  <span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">auto</span> <span class="hljs-title">parse</span><span class="hljs-params">(ParseContext &amp;ctx)</span> </span>{ <span class="hljs-keyword">return</span> ctx.begin(); }
+
+  <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> FormatContext&gt;
+  <span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">format</span><span class="hljs-params">(<span class="hljs-keyword">const</span> point &amp;p, FormatContext &amp;ctx)</span> </span>{
+    <span class="hljs-keyword">return</span> format_to(ctx.out(), <span class="hljs-string">"({:.1f}, {:.1f})"</span>, p.x, p.y);
+  }
+};
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+point p = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>};
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> s = fmt::format(<span class="hljs-string">"{}"</span>, p);<span class="hljs-comment">// s == "(1.0, 2.0)"</span>
+}
+</div></code></pre>
+<p>在上面的示例中，格式化程序 <code>&lt;point&gt;::parse</code> 函数忽略了 ctx.begin() 引用的格式字符串的内容，因此对象将始终以相同的方式格式化。有关如何解析格式字符串和自定义格式化输出的高级示例，请参见 <code>formatter&lt;tm&gt;::parse in fmt/chrono.h</code> 。</p>
+<p>您还可以重用现有的格式化程序，例如:</p>
+<pre><code class="language-C++"><div><span class="hljs-keyword">enum</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">color</span> {</span>red, green, blue};
+
+<span class="hljs-keyword">template</span> &lt;&gt;
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">fmt</span>:</span>:formatter&lt;color&gt;: formatter&lt;string_view&gt; {
+  <span class="hljs-comment">// parse is inherited from formatter&lt;string_view&gt;.</span>
+  <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> FormatContext&gt;
+  <span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">format</span><span class="hljs-params">(color c, FormatContext &amp;ctx)</span> </span>{
+    string_view name = <span class="hljs-string">"unknown"</span>;
+    <span class="hljs-keyword">switch</span> (c) {
+    <span class="hljs-keyword">case</span> color::red:   name = <span class="hljs-string">"red"</span>; <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> color::green: name = <span class="hljs-string">"green"</span>; <span class="hljs-keyword">break</span>;
+    <span class="hljs-keyword">case</span> color::blue:  name = <span class="hljs-string">"blue"</span>; <span class="hljs-keyword">break</span>;
+    }
+    <span class="hljs-keyword">return</span> formatter&lt;string_view&gt;::format(name, ctx);
+  }
+};
+</div></code></pre>
+<p>您还可以为类的集成结构编写格式化程序，特别是基类，如下：</p>
+<pre><code class="language-C++"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;type_traits&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fmt/format.h&gt;</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">A</span> {</span>
+  <span class="hljs-keyword">virtual</span> ~A() {}
+  <span class="hljs-keyword">virtual</span> <span class="hljs-built_in">std</span>::<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">name</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">"A"</span>; }
+};
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">B</span> :</span> A {
+  <span class="hljs-keyword">virtual</span> <span class="hljs-built_in">std</span>::<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">name</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">"B"</span>; }
+};
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">fmt</span>:</span>:formatter&lt;T, <span class="hljs-built_in">std</span>::<span class="hljs-keyword">enable_if_t</span>&lt;<span class="hljs-built_in">std</span>::is_base_of&lt;A, T&gt;::value, <span class="hljs-keyword">char</span>&gt;&gt; :
+    fmt::formatter&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt; {
+  <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> FormatCtx&gt;
+  <span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">format</span><span class="hljs-params">(<span class="hljs-keyword">const</span> A&amp; a, FormatCtx&amp; ctx)</span> </span>{
+    <span class="hljs-keyword">return</span> fmt::formatter&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt;::format(a.name(), ctx);
+  }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  B b;
+  A&amp; a = b;
+  fmt::print(<span class="hljs-string">"{}"</span>, a); <span class="hljs-comment">// prints "B"</span>
+}
+</div></code></pre>
+<h4 id="1423-迭代器输出支持">1.4.2.3. 迭代器输出支持</h4>
+<p>支持输出到迭代器中，通过函数 <code>fmt::format_to</code> 和 <code>fmt::format_to_n</code> 来将参数输出到迭代器中。
+返回输出的迭代器，并且将迭代器指向对应的end位置。 <code>fmt::format_to_n</code> 除了返回迭代器，同时返回插入个数。</p>
+<pre><code class="language-C++"><div><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> OutputIt, <span class="hljs-keyword">typename</span> S, <span class="hljs-keyword">typename</span>... Args&gt;
+OutputIt fmt::format_to(OutputIt out, <span class="hljs-keyword">const</span> S &amp;format_str, Args&amp;&amp;... args)
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> OutputIt, <span class="hljs-keyword">typename</span> S, <span class="hljs-keyword">typename</span>... Args&gt;
+format_to_n_result&lt;OutputIt&gt; fmt::format_to_n(OutputIt out, <span class="hljs-built_in">std</span>::<span class="hljs-keyword">size_t</span> n, <span class="hljs-keyword">const</span> S &amp;format_str, <span class="hljs-keyword">const</span> Args&amp;... args)
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> OutputIt&gt;
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">fmt</span>:</span>:format_to_n_result
+OutputIt out<span class="hljs-comment">//Iterator past the end of the output range.</span>
+<span class="hljs-built_in">std</span>::<span class="hljs-keyword">size_t</span> size<span class="hljs-comment">//Total (not truncated) output size.</span>
+</div></code></pre>
+<h4 id="1424-基于字面量的">1.4.2.4. 基于字面量的</h4>
+<p>定义在 fmt/format.h 下边，通过常量字符串及 _a 和 _format 来格式化字符串，等价于 fmt::arg() 和 fmt::format().</p>
+<pre><code class="language-C++"><div><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> fmt::literals;
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> message = <span class="hljs-string">"The answer is {}"</span>_format(<span class="hljs-number">42</span>);
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> fmt::literals;
+fmt::print(<span class="hljs-string">"Elapsed time: {s:.2f} seconds"</span>, <span class="hljs-string">"s"</span>_a=<span class="hljs-number">1.23</span>);
+</div></code></pre>
+<h4 id="1425-使用工具集">1.4.2.5. 使用工具集</h4>
+<pre><code class="language-C++"><div><span class="hljs-comment">//检测T是不是字符类型，用户可重定义，继承自false_type</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">fmt</span>:</span>:is_char
+
+<span class="hljs-comment">//字符类型</span>
+<span class="hljs-keyword">using</span> fmt::<span class="hljs-keyword">char_t</span> = <span class="hljs-keyword">typedef</span> <span class="hljs-keyword">typename</span> internal::char_t_impl&lt;S&gt;::type
+String’s character type.
+
+<span class="hljs-comment">//功能同format，返回值为format的size大小</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span>... Args&gt;
+<span class="hljs-built_in">std</span>::<span class="hljs-keyword">size_t</span> fmt::formatted_size(string_view format_str, <span class="hljs-keyword">const</span> Args&amp;... args)
+Returns the number of characters in the output of format(format_str, args...).
+
+<span class="hljs-comment">//调用T默认的函数转换为字符串，不支持用户自定义类型</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> fmt::to_string(<span class="hljs-keyword">const</span> T &amp;value)
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;
+<span class="hljs-built_in">std</span>::wstring fmt::to_wstring(<span class="hljs-keyword">const</span> T &amp;value)
+
+<span class="hljs-comment">//转换为string_view,用户自定义类型如果需要支持，需要实现to_string_view函数</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> Char&gt;
+basic_string_view&lt;Char&gt; fmt::to_string_view(<span class="hljs-keyword">const</span> Char *s)
+
+<span class="hljs-comment">//字符串拼接</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> Range&gt;
+arg_join&lt;internal::<span class="hljs-keyword">iterator_t</span>&lt;<span class="hljs-keyword">const</span> Range&gt;, <span class="hljs-keyword">char</span>&gt; fmt::join(<span class="hljs-keyword">const</span> Range &amp;range, string_view sep)
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; v = {<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>};
+fmt::print(<span class="hljs-string">"{}"</span>, fmt::join(v, <span class="hljs-string">", "</span>));
+<span class="hljs-comment">// Output: "1, 2, 3"</span>
+
+<span class="hljs-comment">//同上，迭代器拼接</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> It&gt;
+arg_join&lt;It, <span class="hljs-keyword">char</span>&gt; fmt::join(It begin, It end, string_view sep)¶
+
+<span class="hljs-comment">//一个动态增长的内存缓冲区，用于简单的可复制/可构造类型，第一个SIZE元素存储在对象本身中。</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T, <span class="hljs-built_in">std</span>::<span class="hljs-keyword">size_t</span> SIZE = inline_buffer_size, <span class="hljs-keyword">typename</span> Allocator = <span class="hljs-built_in">std</span>::allocator&lt;T&gt;&gt;
+class fmt::basic_memory_buffer
+#define memory_buffer basic_memory_buffer&lt;<span class="hljs-keyword">char</span>&gt;
+#define wmemory_buffer basic_memory_buffer&lt;wchar&gt;
+basic_memory_buffer(basic_memory_buffer &amp;&amp;other) <span class="hljs-comment">//移动构造函数</span>
+basic_memory_buffer &amp;<span class="hljs-keyword">operator</span>=(basic_memory_buffer &amp;&amp;other) <span class="hljs-comment">//等号移动重载函数</span>
+</div></code></pre>
+<h4 id="1426-系统错误">1.4.2.6. 系统错误</h4>
+<p>通过一个函数二个类来实现系统错误。
+class system_error 继承自runtime_error, 构建一个系统错误
+class windows_error 构建一个windows的系统错误
+format_system_error 根据系统错误ID，构造一个系统错误消息</p>
+<pre><code class="language-C++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">fmt</span>:</span>:system_error{
+    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span>... Args&gt;
+    system_error(<span class="hljs-keyword">int</span> error_code, string_view message, <span class="hljs-keyword">const</span> Args&amp;... args)
+}
+<span class="hljs-keyword">void</span> fmt::format_system_error(internal::buffer&lt;<span class="hljs-keyword">char</span>&gt; &amp;out, <span class="hljs-keyword">int</span> error_code, fmt::string_view message)
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">fmt</span>:</span>:windows_error{
+    <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span>... Args&gt;
+    windows_error(<span class="hljs-keyword">int</span> error_code, string_view message, <span class="hljs-keyword">const</span> Args&amp;... args)
+}
+</div></code></pre>
+<h4 id="1427-用户自定义分配器">1.4.2.7. 用户自定义分配器</h4>
+<p>{fmt}库支持自定义动态内存分配器。自定义分配器类可以指定为fmt::basic_memory_buffer的模板参数:</p>
+<pre><code class="language-C++"><div><span class="hljs-keyword">using</span> custom_memory_buffer = fmt::basic_memory_buffer&lt;<span class="hljs-keyword">char</span>, fmt::inline_buffer_size, custom_allocator&gt;;
+</div></code></pre>
+<p>也可以编写一个格式化函数，使用自定义分配器:
+分配器将仅用于输出容器。如果使用命名参数，那么存储指向它们的指针的容器将使用默认分配器进行分配。另外，浮点格式化也可以返回到sprintf，它可以执行分配。</p>
+<pre><code class="language-C++"><div><span class="hljs-keyword">using</span> custom_string =
+  <span class="hljs-built_in">std</span>::basic_string&lt;<span class="hljs-keyword">char</span>, <span class="hljs-built_in">std</span>::char_traits&lt;<span class="hljs-keyword">char</span>&gt;, custom_allocator&gt;;
+
+<span class="hljs-function">custom_string <span class="hljs-title">vformat</span><span class="hljs-params">(custom_allocator alloc, fmt::string_view format_str,
+                      fmt::format_args args)</span> </span>{
+  <span class="hljs-function">custom_memory_buffer <span class="hljs-title">buf</span><span class="hljs-params">(alloc)</span></span>;
+  fmt::vformat_to(buf, format_str, args);
+  <span class="hljs-keyword">return</span> custom_string(buf.data(), buf.size(), alloc);
+}
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> ...Args&gt;
+<span class="hljs-function"><span class="hljs-keyword">inline</span> custom_string <span class="hljs-title">format</span><span class="hljs-params">(custom_allocator alloc,
+                            fmt::string_view format_str,
+                            <span class="hljs-keyword">const</span> Args &amp; ... args)</span> </span>{
+  <span class="hljs-keyword">return</span> vformat(alloc, format_str, fmt::make_format_args(args...));
+}
+</div></code></pre>
+<h4 id="1428-用户内建格式化">1.4.2.8. 用户内建格式化</h4>
+<p>可以通过提供自定义参数formatter类来改变参数的格式:</p>
+<pre><code class="language-C++"><div><span class="hljs-comment">//默认参数格式器，继承自 fmt::internal::arg_formatter_base&lt; Range &gt;</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> Range&gt;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">fmt</span>:</span>:arg_formatter{}
+
+<span class="hljs-comment">//public函数，构造一个参数格式化程序对象。ctx是对格式化上下文的引用，specs包含标准参数类型的格式说明符信息。</span>
+arg_formatter(context_type &amp;ctx, basic_parse_context&lt;char_type&gt; *parse_ctx = <span class="hljs-literal">nullptr</span>, format_specs *specs = <span class="hljs-literal">nullptr</span>)
+<span class="hljs-comment">//格式化用户定义类型的参数。</span>
+<span class="hljs-function">iterator <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">typename</span> basic_format_arg&lt;context_type&gt;::handle handle)</span>
+
+<span class="hljs-comment">//举例如下</span>
+<span class="hljs-keyword">using</span> arg_formatter </span>=
+  fmt::arg_formatter&lt;fmt::back_insert_range&lt;fmt::internal::buffer&gt;&gt;;
+
+<span class="hljs-comment">// A custom argument formatter that formats negative integers as unsigned</span>
+<span class="hljs-comment">// with the ``x`` format specifier.</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">custom_arg_formatter</span> :</span> <span class="hljs-keyword">public</span> arg_formatter {
+ <span class="hljs-keyword">public</span>:
+  custom_arg_formatter(fmt::format_context &amp;ctx,
+                       fmt::format_specs *spec = <span class="hljs-literal">nullptr</span>)
+    : arg_formatter(ctx, spec) {}
+
+  <span class="hljs-keyword">using</span> arg_formatter::<span class="hljs-keyword">operator</span>();
+
+  <span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">operator</span><span class="hljs-params">()</span><span class="hljs-params">(<span class="hljs-keyword">int</span> value)</span> </span>{
+    <span class="hljs-keyword">if</span> (spec().type() == <span class="hljs-string">'x'</span>)
+      <span class="hljs-keyword">return</span> (*<span class="hljs-keyword">this</span>)(<span class="hljs-keyword">static_cast</span>&lt;<span class="hljs-keyword">unsigned</span>&gt;(value)); <span class="hljs-comment">// convert to unsigned and format</span>
+    <span class="hljs-keyword">return</span> arg_formatter::<span class="hljs-keyword">operator</span>()(value);
+  }
+};
+
+<span class="hljs-built_in">std</span>::<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">custom_vformat</span><span class="hljs-params">(fmt::string_view format_str, fmt::format_args args)</span> </span>{
+  fmt::memory_buffer buffer;
+  <span class="hljs-comment">// Pass custom argument formatter as a template arg to vformat_to.</span>
+  fmt::vformat_to&lt;custom_arg_formatter&gt;(buffer, format_str, args);
+  <span class="hljs-keyword">return</span> fmt::to_string(buffer);
+}
+
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> ...Args&gt;
+<span class="hljs-keyword">inline</span> <span class="hljs-built_in">std</span>::<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">custom_format</span><span class="hljs-params">(
+    fmt::string_view format_str, <span class="hljs-keyword">const</span> Args &amp;... args)</span> </span>{
+  <span class="hljs-keyword">return</span> custom_vformat(format_str, fmt::make_format_args(args...));
+}
+
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> s = custom_format(<span class="hljs-string">"{:x}"</span>, <span class="hljs-number">-42</span>); <span class="hljs-comment">// s == "ffffffd6"</span>
+</div></code></pre>
+<h3 id="143-日期和时间格式化">1.4.3. 日期和时间格式化</h3>
+<p>该库支持类似 strftime 的日期和时间格式,格式字符串语法在strftime的文档中有描述。</p>
+<pre><code class="language-C++"><div><span class="hljs-comment">//# include &lt;fmt/chrono.h&gt;</span>
+
+<span class="hljs-built_in">std</span>::<span class="hljs-keyword">time_t</span> t = <span class="hljs-built_in">std</span>::time(<span class="hljs-literal">nullptr</span>);
+<span class="hljs-comment">// Prints "The date is 2016-04-29." (with the current date)</span>
+fmt::print(<span class="hljs-string">"The date is {:%Y-%m-%d}."</span>, *<span class="hljs-built_in">std</span>::localtime(&amp;t));
+</div></code></pre>
+<h4 id="1431-stdostream的支持">1.4.3.1. std::ostream的支持</h4>
+<p>fmt/ostream.h 提供了 std::ostream 支持,支持用户自定义，包括重载操作符&lt;&lt;</p>
+<pre><code class="language-C++"><div><span class="hljs-comment">//将格式化的数据打印到流输出，比如：fmt::print(cerr, "Don't {}!", "panic");</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> S, <span class="hljs-keyword">typename</span>... Args, <span class="hljs-keyword">typename</span> Char = <span class="hljs-keyword">enable_if_t</span>&lt;internal::is_string&lt;S&gt;::value, <span class="hljs-keyword">char_t</span>&lt;S&gt;&gt;&gt;
+<span class="hljs-keyword">void</span> fmt::print(<span class="hljs-built_in">std</span>::basic_ostream&lt;Char&gt; &amp;os, <span class="hljs-keyword">const</span> S &amp;format_str, Args&amp;&amp;... args)
+
+<span class="hljs-comment">//举例如下：</span>
+<span class="hljs-comment">//# include &lt;fmt/ostream.h&gt;</span>
+
+class date {
+  <span class="hljs-keyword">int</span> year_, month_, day_;
+<span class="hljs-keyword">public</span>:
+  date(<span class="hljs-keyword">int</span> year, <span class="hljs-keyword">int</span> month, <span class="hljs-keyword">int</span> day): year_(year), month_(month), day_(day) {}
+
+  <span class="hljs-keyword">friend</span> <span class="hljs-built_in">std</span>::ostream&amp;<span class="hljs-keyword">operator</span>&lt;&lt;(<span class="hljs-built_in">std</span>::ostream&amp;os, <span class="hljs-keyword">const</span> date &amp;d) {
+    <span class="hljs-keyword">return</span> os &lt;&lt; d.year_ &lt;&lt; <span class="hljs-string">'-'</span> &lt;&lt; d.month_ &lt;&lt; <span class="hljs-string">'-'</span> &lt;&lt; d.day_;
+  }
+};
+
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> s = fmt::format(<span class="hljs-string">"The date is {}"</span>, date(<span class="hljs-number">2012</span>, <span class="hljs-number">12</span>, <span class="hljs-number">9</span>));
+<span class="hljs-comment">// s == "The date is 2012-12-9"</span>
+</div></code></pre>
+<h4 id="1432-printf格式化">1.4.3.2. printf格式化</h4>
+<p>头文件fmt/printf.h提供了类似于printf的格式化功能。以下函数使用printf格式字符串语法和POSIX扩展名作为位置参数。与标准函数不同，fmt函数是类型安全的，如果参数类型不匹配其格式规范，则会抛出异常。</p>
+<pre><code class="language-C++"><div><span class="hljs-comment">//将格式化数据打印到标准输出.比如：fmt::printf("Elapsed time: %.2f seconds", 1.23);</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> S, <span class="hljs-keyword">typename</span>... Args&gt;
+<span class="hljs-keyword">int</span> fmt::<span class="hljs-built_in">printf</span>(<span class="hljs-keyword">const</span> S &amp;format_str, <span class="hljs-keyword">const</span> Args&amp;... args)
+
+<span class="hljs-comment">//将格式化数据打印到文件f中.比如：fmt::fprintf(stderr, "Don't %s!", "panic");</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> S, <span class="hljs-keyword">typename</span>... Args, <span class="hljs-keyword">typename</span> Char = <span class="hljs-keyword">enable_if_t</span>&lt;internal::is_string&lt;S&gt;::value, <span class="hljs-keyword">char_t</span>&lt;S&gt;&gt;&gt;
+<span class="hljs-keyword">int</span> fmt::<span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">std</span>::FILE *f, <span class="hljs-keyword">const</span> S &amp;format, <span class="hljs-keyword">const</span> Args&amp;... args)
+
+<span class="hljs-comment">//将格式化数据打印到系统os中.比如：fmt::fprintf(cerr, "Don't %s!", "panic");</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> S, <span class="hljs-keyword">typename</span>... Args, <span class="hljs-keyword">typename</span> Char = <span class="hljs-keyword">char_t</span>&lt;S&gt;&gt;
+<span class="hljs-keyword">int</span> fmt::<span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">std</span>::basic_ostream&lt;Char&gt; &amp;os, <span class="hljs-keyword">const</span> S &amp;format_str, <span class="hljs-keyword">const</span> Args&amp;... args)
+
+<span class="hljs-comment">//将格式化数据输出到字符串并返回.比如：std::string message = fmt::sprintf("The answer is %d", 42);</span>
+<span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> S, <span class="hljs-keyword">typename</span>... Args, <span class="hljs-keyword">typename</span> Char = <span class="hljs-keyword">enable_if_t</span>&lt;internal::is_string&lt;S&gt;::value, <span class="hljs-keyword">char_t</span>&lt;S&gt;&gt;&gt;
+<span class="hljs-built_in">std</span>::basic_string&lt;Char&gt; fmt::<span class="hljs-built_in">sprintf</span>(<span class="hljs-keyword">const</span> S &amp;format, <span class="hljs-keyword">const</span> Args&amp;... args)
+</div></code></pre>
+<h2 id="15-format字符串语法">1.5. Format字符串语法</h2>
+<p>格式化函数如fmt::format()和fmt::print()使用本节中描述的相同的格式字符串语法。
+格式字符串包含由大括号{}包围的“替换字段”。任何没有包含在大括号中的内容都被认为是文本，它被不加修改地复制到输出中。如果需要在文字文本中包含一个大括号字符，可以使用转义形式:{{ }}。
+替换字段的语法如下:</p>
+<p>replacement_field ::=  &quot;{&quot; [arg_id] [&quot;:&quot; format_spec] &quot;}&quot;
+arg_id            ::=  integer | identifier
+integer           ::=  digit+
+digit             ::=  &quot;0&quot;...&quot;9&quot;
+identifier        ::=  id_start id_continue*
+id_start          ::=  &quot;a&quot;...&quot;z&quot; | &quot;A&quot;...&quot;Z&quot; | &quot;_&quot;
+id_continue       ::=  id_start | digit</p>
+<p>arg_id:表示后边参数的标识，默认可以不写，自动填充0,1,2,3...。当然arg_id也可以是用户自定义的名称(命名规范为 字母数字下划线 组合)
+format_space:包含应该如何显示值的规范，包括字段宽度、对齐方式、填充、小数精度等细节。每种值类型都可以定义自己的“格式化迷你语言”或format_spec的解释。大多数内置类型支持一种通用的格式，下一节将对此进行描述。</p>
+<h2 id="16-输出格式说明">1.6. 输出格式说明</h2>
+<p>“格式规范”用于包含在格式字符串中的替换字段中，以定义如何显示各个值(请参阅格式字符串语法)。
+大多数内置类型实现以下格式规范选项，尽管有些格式选项仅受数字类型支持。</p>
+<p>format_spec ::=  [[fill]align][sign][&quot;#&quot;][&quot;0&quot;][width][&quot;.&quot; precision][type]
+fill        ::=  除去三个符号的任意符号都可以填充'{'、'}'、'\0',填充必然伴随着对其方式
+align       ::=  &quot;&lt;&quot; | &quot;&gt;&quot; | &quot;=&quot; | &quot;^&quot; 对其方式
+sign        ::=  &quot;+&quot; | &quot;-&quot; | &quot; &quot; 符号显示方式
+width       ::=  integer | &quot;{&quot; arg_id &quot;}&quot; 宽
+precision   ::=  integer | &quot;{&quot; arg_id &quot;}&quot; 精度
+type        ::=  int_type | &quot;a&quot; | &quot;A&quot; | &quot;c&quot; | &quot;e&quot; | &quot;E&quot; | &quot;f&quot; | &quot;F&quot; | &quot;g&quot; | &quot;G&quot; | &quot;p&quot; | &quot;s&quot; 输出格式
+int_type    ::=  &quot;b&quot; | &quot;B&quot; | &quot;d&quot; | &quot;n&quot; | &quot;o&quot; | &quot;x&quot; | &quot;X&quot; 显示格式</p>
+<p>其中#后边的0是什么意思，有待考证？？？
+举例如下：</p>
+<pre><code class="language-C++"><div>format(<span class="hljs-string">"{:*^+{}.{}%}"</span>, <span class="hljs-number">1</span>, <span class="hljs-number">15</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">//fill:*; align:^; sign:+ width:15; precision:2; type:%</span>
+<span class="hljs-comment">// Result: "****+100.00%****"</span>
+</div></code></pre>
+<p>align 对其格式说明：</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>'&lt;'</td>
+<td>左对齐，大部分默认模式</td>
+</tr>
+<tr>
+<td>'&gt;'</td>
+<td>右对齐，数字默认对其方式</td>
+</tr>
+<tr>
+<td>'='</td>
+<td>强制将填充放在+之后，自适应与有符号的正数,‘+000000120’.</td>
+</tr>
+<tr>
+<td>'^'</td>
+<td>居中显示</td>
+</tr>
+</tbody>
+</table>
+<p>sign 有符号格式说明：</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>'+'</td>
+<td>正数前边显示+号，负数前边显示-号</td>
+</tr>
+<tr>
+<td>'-'</td>
+<td>正数前边啥都不显示，负数前边显示-号(默认行为)</td>
+</tr>
+<tr>
+<td>space</td>
+<td>正数前边显示空格，负数前边显示-号</td>
+</tr>
+</tbody>
+</table>
+<p>string 字符串格式说明：</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>'s'</td>
+<td>字符串格式，可以省略</td>
+</tr>
+<tr>
+<td>none</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<p>char 字符格式说明：</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>'c'</td>
+<td>字符格式，可以省略</td>
+</tr>
+<tr>
+<td>none</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<p>int 数字显示格式：</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>'b'</td>
+<td>二进制格式显示，#b会在下载显示前边加0b前缀</td>
+</tr>
+<tr>
+<td>'B'</td>
+<td>二进制格式显示，#B会在下载显示前边加0B前缀</td>
+</tr>
+<tr>
+<td>'d'</td>
+<td>十进制格式显示</td>
+</tr>
+<tr>
+<td>'o'</td>
+<td>八进制格式显示</td>
+</tr>
+<tr>
+<td>'x'</td>
+<td>十六进制格式显示，#x会在下载显示前边加0x前缀,字母小写</td>
+</tr>
+<tr>
+<td>'X'</td>
+<td>十六进制格式显示，#X会在下载显示前边加0X前缀,字母大写</td>
+</tr>
+<tr>
+<td>'n'</td>
+<td>同'd'，但是会插入适当分隔符</td>
+</tr>
+<tr>
+<td>none</td>
+<td>同'd'</td>
+</tr>
+</tbody>
+</table>
+<p>float 显示格式：</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>'a'</td>
+<td>十六进制浮点格式。以16为基数，用前缀“0x”和小写字母表示9以上的数字。用“p”表示指数。</td>
+</tr>
+<tr>
+<td>'A'</td>
+<td>同上，字母用大写表示</td>
+</tr>
+<tr>
+<td>'e'</td>
+<td>指数表示法。以科学符号打印数字，使用字母“e”表示指数。</td>
+</tr>
+<tr>
+<td>'E'</td>
+<td>同上，用E代替e</td>
+</tr>
+<tr>
+<td>'f'</td>
+<td>固定标点符号，不使用科学计数法，可以指定显示位数</td>
+</tr>
+<tr>
+<td>'F'</td>
+<td>同上，用NAN，INF代替nan，inf</td>
+</tr>
+<tr>
+<td>'g'</td>
+<td>默认格式，视情况使用科学计数法或者普通标点法</td>
+</tr>
+<tr>
+<td>'G'</td>
+<td>同上，当使用科学计数法的时候，用E代替e</td>
+</tr>
+<tr>
+<td>'%'</td>
+<td>同'f'，只不过会乘100后边加个%号</td>
+</tr>
+<tr>
+<td>none</td>
+<td>同'g'</td>
+</tr>
+</tbody>
+</table>
+<p>pointer 指针格式说明：</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>'p'</td>
+<td>指针格式，可以省略</td>
+</tr>
+<tr>
+<td>none</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table>
+<h2 id="17-举例">1.7. 举例</h2>
+<p>本节包含格式语法示例以及与printf格式的比较。
+在大多数情况下，语法类似于printf格式，只是用{:}代替了%。例如，“%03.2f”可以翻译成“{:03.2f}”。
+新的格式语法还支持新的不同的选项，如下面的示例所示。</p>
+<pre><code class="language-C++"><div><span class="hljs-comment">//通过位置定位参数</span>
+format(<span class="hljs-string">"{0}, {1}, {2}"</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>);
+<span class="hljs-comment">// Result: "a, b, c"</span>
+format(<span class="hljs-string">"{}, {}, {}"</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>);
+<span class="hljs-comment">// Result: "a, b, c"</span>
+format(<span class="hljs-string">"{2}, {1}, {0}"</span>, <span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>);
+<span class="hljs-comment">// Result: "c, b, a"</span>
+format(<span class="hljs-string">"{0}{1}{0}"</span>, <span class="hljs-string">"abra"</span>, <span class="hljs-string">"cad"</span>);  <span class="hljs-comment">// 参数可被重复使用</span>
+<span class="hljs-comment">// Result: "abracadabra"</span>
+</div></code></pre>
+<pre><code class="language-C++"><div><span class="hljs-comment">//对其和宽度指定</span>
+format(<span class="hljs-string">"{:&lt;30}"</span>, <span class="hljs-string">"left aligned"</span>);
+<span class="hljs-comment">// Result: "left aligned                  "</span>
+format(<span class="hljs-string">"{:&gt;30}"</span>, <span class="hljs-string">"right aligned"</span>);
+<span class="hljs-comment">// Result: "                 right aligned"</span>
+format(<span class="hljs-string">"{:^30}"</span>, <span class="hljs-string">"centered"</span>);
+<span class="hljs-comment">// Result: "           centered           "</span>
+format(<span class="hljs-string">"{:*^30}"</span>, <span class="hljs-string">"centered"</span>);  <span class="hljs-comment">// 用*填充</span>
+<span class="hljs-comment">// Result: "***********centered***********"</span>
+format(<span class="hljs-string">"{:&lt;{}}"</span>, <span class="hljs-string">"left aligned"</span>, <span class="hljs-number">30</span>);<span class="hljs-comment">//宽度可动态传入</span>
+<span class="hljs-comment">// Result: "left aligned                  "</span>
+</div></code></pre>
+<pre><code class="language-C++"><div><span class="hljs-comment">//浮点精度，精度可以动态传入</span>
+format(<span class="hljs-string">"{:.{}f}"</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">1</span>);
+<span class="hljs-comment">// Result: "3.1"</span>
+</div></code></pre>
+<pre><code class="language-C++"><div><span class="hljs-comment">//标点符号显示</span>
+format(<span class="hljs-string">"{:+f}; {:+f}"</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">-3.14</span>);  <span class="hljs-comment">// 显示+</span>
+<span class="hljs-comment">// Result: "+3.140000; -3.140000"</span>
+format(<span class="hljs-string">"{: f}; {: f}"</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">-3.14</span>);  <span class="hljs-comment">// 用空格代替+</span>
+<span class="hljs-comment">// Result: " 3.140000; -3.140000"</span>
+format(<span class="hljs-string">"{:-f}; {:-f}"</span>, <span class="hljs-number">3.14</span>, <span class="hljs-number">-3.14</span>);  <span class="hljs-comment">// 不显示+，同'{:f}; {:f}'</span>
+<span class="hljs-comment">// Result: "3.140000; -3.140000"</span>
+</div></code></pre>
+<pre><code class="language-C++"><div><span class="hljs-comment">//百分号显示</span>
+format(<span class="hljs-string">"{0:f} or {0:%}"</span>, <span class="hljs-number">.635</span>);
+<span class="hljs-comment">// Result: "0.635000 or 63.500000%"</span>
+format(<span class="hljs-string">"{:*^{}.{}%}"</span>, <span class="hljs-number">1.</span>, <span class="hljs-number">15</span>, <span class="hljs-number">2</span>); <span class="hljs-comment">// 伴随填充，动态宽度15和精度(小数点后2位)</span>
+<span class="hljs-comment">// Result: "****100.00%****"</span>
+</div></code></pre>
+<pre><code class="language-C++"><div><span class="hljs-comment">//数字格式显示</span>
+format(<span class="hljs-string">"int: {0:d};  hex: {0:x};  oct: {0:o}; bin: {0:b}"</span>, <span class="hljs-number">42</span>);
+<span class="hljs-comment">// Result: "int: 42;  hex: 2a;  oct: 52; bin: 101010"</span>
+<span class="hljs-comment">// with 0x or 0 or 0b as prefix:</span>
+format(<span class="hljs-string">"int: {0:d};  hex: {0:#x};  oct: {0:#o};  bin: {0:#b}"</span>, <span class="hljs-number">42</span>);
+<span class="hljs-comment">// Result: "int: 42;  hex: 0x2a;  oct: 052;  bin: 0b101010"</span>
+</div></code></pre>
+<pre><code class="language-C++"><div><span class="hljs-comment">//填充十六进制字节与前缀，总是打印两个十六进制字符,#x表示以0x开头，04表示精度4位(包含前缀)</span>
+format(<span class="hljs-string">"{:#04x}"</span>, <span class="hljs-number">0</span>);
+<span class="hljs-comment">// Result: "0x00"</span>
+</div></code></pre>
+<h2 id="18-参考资料">1.8. 参考资料</h2>
+<ol>
+<li><a href="https://github.com/fmtlib/fmtlib.github.io">github-doc</a></li>
+<li><a href="https://github.com/fmtlib/fmt">github</a></li>
+<li><a href="https://fmt.dev/latest/index.html">官网API</a></li>
+<li><a href="https://forcemz.net/cxx/2019/04/29/StringFormattingTalk/">字符串格式化漫谈</a></li>
+<li><a href="https://fmt.dev/latest/usage.html">编译安装</a></li>
+</ol>
+<h2 id="19-问题集">1.9. 问题集</h2>
+<ol>
+<li>1.6中format_spec ::=  [[fill]align][sign][&quot;#&quot;][&quot;0&quot;][width][&quot;.&quot; precision][type]，中[&quot;#&quot;]后边的[&quot;0&quot;]是什么意思，有待考证？？？</li>
+</ol>
+
+    </body>
+    </html>

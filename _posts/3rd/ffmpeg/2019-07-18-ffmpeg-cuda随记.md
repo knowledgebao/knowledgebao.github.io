@@ -1,11 +1,12 @@
 ---
 layout: post
 title: ffmpeg-cuda随记
-date: 2019-07-18 21:33:08
+date: 2019-11-01 10:13:58
 description: ffmpeg-cuda随记
 tag: ffmpeg
 
 ---
+
 
 涉及文件：
 

@@ -1,11 +1,14 @@
 ---
 layout: post
 title: tool-markdown
-date: 2019-10-22 09:33:09
+date: 2019-11-05 10:30:03
 description: tool-markdown
 tag: vscode
 
 ---
+
+
+# vscode中编辑markdown的工具
 
 - [vscode中编辑markdown的工具](#vscode中编辑markdown的工具)
   - [markdown all in one](#markdown-all-in-one)
@@ -16,10 +19,10 @@ tag: vscode
   - [markdownlint](#markdownlint)
   - [参考网址](#参考网址)
 
-
-# vscode中编辑markdown的工具
 ## markdown all in one
+
 ### 支持功能
+
 1. 提供了常用操作便利的快捷键  
 
 | Key              | Command                                                 |
@@ -36,54 +39,61 @@ tag: vscode
 | Shift + Alt+F    | Format Document 格式化文档(右键默认提供)                |
 | Tab              | 自动降级                                                |
 | Enter            | 自动升级                                                |
+
 1. 支持目录
-   + 自动生成目录,方法如下(可更新)
-     + ctrl + shift + p
-     + Markdown: Create Table of Contents
-     + Markdown: Update Table of Contents
+   - 自动生成目录,方法如下(可更新)
+     - ctrl + shift + p
+     - Markdown: Create Table of Contents
+     - Markdown: Update Table of Contents
 2. 一边书写一边预览
-   + Ctrl + Shift + V
-   + Ctrl + K V
+   - Ctrl + Shift + V
+   - Ctrl + K V
 3. 可轻松转换为HTML文件
-     + ctrl + shift + p
-     + Markdown: Print current document to HTML
+     - ctrl + shift + p
+     - Markdown: Print current document to HTML
 4. 优化了List editing的编辑
-   + 通过tab和enter快速编辑list
+   - 通过tab和enter快速编辑list
 5. 可格式化table (Alt + Shift + F) 以及Task list (use Alt + C to check/uncheck a list item)
-   + [ ] A 
-   + [x] B
-   + [ ] C
+   - [ ] A
+   - [x] B
+   - [ ] C
 6. 支持特殊数学符号渲染(Ctrl+M)  Markdown: Toggle code span
    $A+B=C$
 7. 插入代码
    Markdown: Toggle code span
 8. 自动添加标题序号
-   + 触发条件,有待挖掘
+   - 触发条件,有待挖掘
 
 ## markdown pdf
+
 1. 转换为html,可以由markdown all in one代替.
 2. 除了转换为html还可以转换为pdf,jpg,png等
 
 ## markdown TOC
+
 1. 生成目录,可以由markdown all in one代替.
 2. 此工具如果标题带数字会失效
 3. 目前(2019-9-30)有2个版本,一个是1.5.6版本,一个是3.0.1版本,请测3.0.1版本好使(1.5.6不好使),但是1.5.6版本下载人数远远多于3.0.1版本.
 
 ## Markdown Preview Enhanced
-+ 官网介绍：https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/code-chunk
-+ 支持一下数据画图方式
-+ Code Chunk
-+ Matplotlib
-+ LaTeX
-+ TikZ
-+ Plotly
-+ 
+
+- 官网介绍：https://shd101wyy.github.io/markdown-preview-enhanced/#/zh-cn/code-chunk
+- 支持一下数据画图方式
+- Code Chunk
+- Matplotlib
+- LaTeX
+- TikZ
+- Plotly
+
 ## markdownlint
-+ 插件介绍：https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint
+
+- 插件介绍：https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint
 github：https://github.com/DavidAnson/markdownlint/blob/master/doc/CustomRules.md
-+ vscde 中下载最多的Markdown 插件
-+ 主要是一些格式规范,错误检测等
+- vscde 中下载最多的Markdown 插件
+- 主要是一些格式规范,错误检测等
 
 ## 参考网址
+
 1. [免费好用的全平台 Markdown 编辑器，你可以自己「做」一个](https://sspai.com/post/53327)
 2. [Markdown All in One 书写Markdown利器](https://segmentfault.com/a/1190000017461306)
+3. [Markdown Preview Enhanced](https://zhuanlan.zhihu.com/p/56699805)

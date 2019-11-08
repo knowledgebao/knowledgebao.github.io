@@ -1,11 +1,12 @@
 ---
 layout: post
 title: python3与python2
-date: 2019-10-22 09:33:09
+date: 2019-11-01 10:13:59
 description: python3与python2
 tag: python
 
 ---
+
 
 [TOC]
 
