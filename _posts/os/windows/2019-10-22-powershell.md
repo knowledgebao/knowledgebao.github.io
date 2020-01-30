@@ -1,11 +1,12 @@
 ---
 layout: post
 title: powershell
-date: 2019-11-01 10:13:59
+date: 2019-11-08 17:45:20
 description: powershell
 tag: windows
 
 ---
+
 
 
 # powershell常用命令

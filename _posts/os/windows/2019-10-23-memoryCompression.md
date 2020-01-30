@@ -1,11 +1,12 @@
 ---
 layout: post
 title: memoryCompression
-date: 2019-11-01 10:13:59
+date: 2019-11-08 17:45:20
 description: memoryCompression
 tag: windows
 
 ---
+
 
 - [memory compression](#memory-compression)
   - [简介](#简介)

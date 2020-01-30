@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>1. git常用变量及使用方法</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body class="vscode-light">
+        <h1 id="1-git%e5%b8%b8%e7%94%a8%e5%8f%98%e9%87%8f%e5%8f%8a%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95">1. git常用变量及使用方法</h1>
+<ul>
+<li><a href="#1-git%e5%b8%b8%e7%94%a8%e5%8f%98%e9%87%8f%e5%8f%8a%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95">1. git常用变量及使用方法</a>
+<ul>
+<li><a href="#11-%e7%ae%80%e4%bb%8b">1.1. 简介</a></li>
+<li><a href="#12-cmake-%e5%8f%98%e9%87%8f%e5%bc%95%e7%94%a8%e7%9a%84%e6%96%b9%e5%bc%8f">1.2. cmake 变量引用的方式</a></li>
+<li><a href="#13-cmake-%e8%87%aa%e5%ae%9a%e4%b9%89%e5%8f%98%e9%87%8f%e7%9a%84%e6%96%b9%e5%bc%8f">1.3. cmake 自定义变量的方式</a></li>
+<li><a href="#14-cmake-%e5%b8%b8%e7%94%a8%e5%8f%98%e9%87%8f">1.4. cmake 常用变量</a></li>
+<li><a href="#15-cmake-%e8%b0%83%e7%94%a8%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e7%9a%84%e6%96%b9%e5%bc%8f">1.5. cmake 调用环境变量的方式</a></li>
+<li><a href="#16-%e7%b3%bb%e7%bb%9f%e4%bf%a1%e6%81%af">1.6. 系统信息</a></li>
+<li><a href="#17-%e4%b8%bb%e8%a6%81%e7%9a%84%e5%bc%80%e5%85%b3%e9%80%89%e9%a1%b9">1.7. 主要的开关选项</a></li>
+<li><a href="#18-%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99">1.8. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="11-%e7%ae%80%e4%bb%8b">1.1. 简介</h2>
+<h2 id="12-cmake-%e5%8f%98%e9%87%8f%e5%bc%95%e7%94%a8%e7%9a%84%e6%96%b9%e5%bc%8f">1.2. cmake 变量引用的方式</h2>
+<p>前面我们已经提到了,使用<code>${}</code>进行变量的引用。在 if 等语句中,是直接使用变量名而不通过<code>${}</code>取值</p>
+<h2 id="13-cmake-%e8%87%aa%e5%ae%9a%e4%b9%89%e5%8f%98%e9%87%8f%e7%9a%84%e6%96%b9%e5%bc%8f">1.3. cmake 自定义变量的方式</h2>
+<p>主要有隐式定义和显式定义两种,一个隐式定义的例子,就是 PROJECT 指令,他会隐式的定义<code>&lt;projectname&gt;_BINARY_DIR</code> 和<code>&lt;projectname&gt;_SOURCE_DIR</code> 两个变量。
+显式定义的例子使用 SET 指令,就可以构建一个自定义变量了。
+比如:<code>SET(HELLO_SRC main.SOURCE_PATH)</code>,就可以通过 ${HELLO_SRC} 来引用这个自定义变量了.</p>
+<h2 id="14-cmake-%e5%b8%b8%e7%94%a8%e5%8f%98%e9%87%8f">1.4. cmake 常用变量</h2>
+<ol>
+<li>
+<p><code>CMAKE_BINARY_DIR</code>  <code>PROJECT_BINARY_DIR</code> <code>&lt;projectname&gt;_BINARY_DIR</code></p>
+<p>这三个变量指代的内容是一致的,如果是 in source 编译,指得就是工程顶层目录,如果是 out-of-source 编译,指的是工程编译发生的目录。PROJECT_BINARY_DIR 跟其他指令稍有区别,现在,你可以理解为他们是一致的。</p>
+</li>
+<li>
+<p><code>CMAKE_SOURCE_DIR</code>  <code>PROJECT_SOURCE_DIR</code>  <code>&lt;projectname&gt;_SOURCE_DIR</code></p>
+<p>这三个变量指代的内容是一致的,不论采用何种编译方式,都是工程顶层目录。也就是在 in source 编译时,他跟 CMAKE_BINARY_DIR 等变量一致。PROJECT_SOURCE_DIR 跟其他指令稍有区别,现在,你可以理解为他们是一致的。</p>
+</li>
+<li>
+<p><code>CMAKE_CURRENT_SOURCE_DIR</code></p>
+<p>指的是当前处理的 CMakeLists.txt 所在的路径,比如上面我们提到的 src 子目录。</p>
+</li>
+<li>
+<p><code>CMAKE_CURRRENT_BINARY_DIR</code></p>
+<p>如果是 in-source 编译,它跟 CMAKE_CURRENT_SOURCE_DIR 一致,如果是 out-of-source 编译,他指的是 target 编译目录。
+使用 ADD_SUBDIRECTORY(src bin) 可以更改这个变量的值。
+使用 SET(EXECUTABLE_OUTPUT_PATH &lt;新路径&gt;)并不会对这个变量造成影响,它仅仅修改了最终目标文件存放的路径。</p>
+</li>
+<li>
+<p><code>CMAKE_CURRENT_LIST_FILE</code></p>
+<p>输出调用这个变量的 CMakeLists.txt 的完整路径</p>
+</li>
+<li>
+<p><code>CMAKE_CURRENT_LIST_LINE</code></p>
+<p>输出这个变量所在的行</p>
+</li>
+<li>
+<p><code>CMAKE_MODULE_PATH</code></p>
+<p>这个变量用来定义自己的 cmake 模块所在的路径。如果你的工程比较复杂,有可能会自己编写一些 cmake 模块,这些 cmake 模块是随你的工程发布的,为了让 cmake 在处理 CMakeLists.txt 时找到这些模块,你需要通过 SET 指令,将自己的 cmake 模块路径设置一下。
+比如:
+SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+这时候你就可以通过 INCLUDE 指令来调用自己的模块了。</p>
+</li>
+<li>
+<p><code>EXECUTABLE_OUTPUT_PATH</code> 和 <code>LIBRARY_OUTPUT_PATH</code></p>
+<p>分别用来重新定义最终结果的存放目录。</p>
+</li>
+<li>
+<p><code>PROJECT_NAME</code></p>
+<p>返回通过 PROJECT 指令定义的项目名称。</p>
+</li>
+<li>
+<p><code>CMAKE_INCLUDE_CURRENT_DIR</code></p>
+<p>自动添加 CMAKE_CURRENT_BINARY_DIR 和 CMAKE_CURRENT_SOURCE_DIR 到当前处理的 CMakeLists.txt。相当于在每个 CMakeLists.txt 加入:
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}),默认是OFF</p>
+</li>
+<li>
+<p><code>CMAKE_INCLUDE_DIRECTORIES_PROJECT_BEFORE</code></p>
+<p>将工程提供的头文件目录始终至于系统头文件目录的前面,当你定义的头文件确实跟系统发生冲突时可以提供一些帮助。</p>
+</li>
+<li>
+<p><code>CMAKE_INCLUDE_PATH</code> 和 <code>CMAKE_LIBRARY_PATH</code></p>
+<p>CMAKE_LIBRARY_PATH,用分号分隔的目录列表，指定find_library()命令的搜索路径。默认情况下它是空的，它是由项目设置的。参见CMAKE_SYSTEM_LIBRARY_PATH和CMAKE_PREFIX_PATH。
+CMAKE_INCLUDE_PATH,用分号分隔的目录列表，其中指定find_file()和find_path()命令的搜索路径。默认情况下它是空的，它是由项目设置的。参见CMAKE_SYSTEM_INCLUDE_PATH和CMAKE_PREFIX_PATH。</p>
+</li>
+</ol>
+<h2 id="15-cmake-%e8%b0%83%e7%94%a8%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e7%9a%84%e6%96%b9%e5%bc%8f">1.5. cmake 调用环境变量的方式</h2>
+<pre><code>使用$ENV{NAME}指令就可以调用系统的环境变量了。
+比如:MESSAGE(STATUS “HOME dir: $ENV{HOME}”)
+
+设置环境变量的方式是:
+SET(ENV{变量名} 值)
+</code></pre>
+<h2 id="16-%e7%b3%bb%e7%bb%9f%e4%bf%a1%e6%81%af">1.6. 系统信息</h2>
+<ol>
+<li><code>CMAKE_MAJOR_VERSION</code>,CMAKE 主版本号,比如 2.4.6 中的 2</li>
+<li><code>CMAKE_MINOR_VERSION</code>,CMAKE 次版本号,比如 2.4.6 中的 4</li>
+<li><code>CMAKE_PATCH_VERSION</code>,CMAKE 补丁等级,比如 2.4.6 中的 6</li>
+<li><code>CMAKE_SYSTEM</code>,系统名称,比如 Linux-2.6.22</li>
+<li><code>CMAKE_SYSTEM_NAME</code>,不包含版本的系统名,比如 Linux</li>
+<li><code>CMAKE_SYSTEM_VERSION</code>,系统版本,比如 2.6.22</li>
+<li><code>CMAKE_SYSTEM_PROCESSOR</code>,处理器名称,比如 i686.</li>
+<li><code>UNIX</code>,在所有的类 UNIX 平台为 TRUE,包括 OS X 和 cygwin</li>
+<li><code>WIN32</code>,在所有的 win32 平台为 TRUE,包括 cygwin</li>
+</ol>
+<h2 id="17-%e4%b8%bb%e8%a6%81%e7%9a%84%e5%bc%80%e5%85%b3%e9%80%89%e9%a1%b9">1.7. 主要的开关选项</h2>
+<ol>
+<li><code>CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS</code>
+用来控制 IF ELSE 语句的书写方式</li>
+<li><code>BUILD_SHARED_LIBS</code>
+这个开关用来控制默认的库编译方式,如果不进行设置,使用 ADD_LIBRARY 并没有指定库类型的情况下,默认编译生成的库都是静态库。
+如果 SET(BUILD_SHARED_LIBS ON)后,默认生成的为动态库。</li>
+<li><code>CMAKE_C_FLAGS</code>
+设置 C 编译选项,也可以通过指令 ADD_DEFINITIONS()添加。</li>
+<li><code>CMAKE_CXX_FLAGS</code>
+设置 C++编译选项,也可以通过指令 ADD_DEFINITIONS()添加。</li>
+</ol>
+<h2 id="18-%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99">1.8. 参考资料</h2>
+<ol>
+<li><a href="https://blog.csdn.net/gubenpeiyuan/article/details/8667279">cmake 常用变量和常用环境变量查表手册</a></li>
+</ol>
+
+    </body>
+    </html>

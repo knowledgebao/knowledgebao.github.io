@@ -1,11 +1,12 @@
 ---
 layout: post
 title: SWIGBasics
-date: 2019-11-01 10:13:58
+date: 2019-11-08 17:45:20
 description: SWIGBasics
 tag: swig
 
 ---
+
 
 - [基础](#基础)
   - [运行swig](#运行swig)

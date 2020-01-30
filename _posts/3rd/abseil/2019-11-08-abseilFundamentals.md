@@ -1,11 +1,12 @@
 ---
 layout: post
 title: abseilFundamentals
-date: 2019-11-07 16:58:41
+date: 2019-11-08 17:45:20
 description: abseilFundamentals
 tag: abseil
 
 ---
+
 # Abseil Fundamentals
 
 - [Abseil Fundamentals](#abseil-fundamentals)

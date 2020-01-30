@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>1. java和C++的区别</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="1-java%e5%92%8cc%e7%9a%84%e5%8c%ba%e5%88%ab">1. java和C++的区别</h1>
+<ul>
+<li><a href="#1-java%e5%92%8cc%e7%9a%84%e5%8c%ba%e5%88%ab">1. java和C++的区别</a>
+<ul>
+<li><a href="#11-%e7%ae%80%e4%bb%8b">1.1. 简介</a></li>
+<li><a href="#12-%e8%af%ad%e6%b3%95">1.2. 语法</a>
+<ul>
+<li><a href="#121-%e5%9f%ba%e7%a1%80">1.2.1. 基础</a>
+<ul>
+<li><a href="#1211-%e7%b1%bb%e5%9e%8b">1.2.1.1. 类型</a></li>
+<li><a href="#1212-%e6%b5%81%e7%a8%8b%e6%8e%a7%e5%88%b6">1.2.1.2. 流程控制</a></li>
+<li><a href="#1213-%e6%95%b0%e7%bb%84">1.2.1.3. 数组</a></li>
+<li><a href="#1214-%e7%b1%bb">1.2.1.4. 类</a></li>
+<li><a href="#1215-jar%e5%8c%85%e6%a8%a1%e5%9d%97">1.2.1.5. jar包，模块</a></li>
+<li><a href="#1216-string">1.2.1.6. String</a></li>
+<li><a href="#1217-%e5%bc%82%e5%b8%b8">1.2.1.7. 异常</a></li>
+<li><a href="#1218-%e6%97%a5%e5%bf%97">1.2.1.8. 日志</a></li>
+<li><a href="#1219-javabean">1.2.1.9. JavaBean</a></li>
+<li><a href="#12110-enum">1.2.1.10. enum</a></li>
+<li><a href="#12111-bigintegerbigdecimal">1.2.1.11. BigInteger/BigDecimal</a></li>
+<li><a href="#12112-%e5%b7%a5%e5%85%b7%e7%b1%bb">1.2.1.12. 工具类</a></li>
+</ul>
+</li>
+<li><a href="#122-%e5%8f%8d%e5%b0%84">1.2.2. 反射</a></li>
+<li><a href="#123-%e6%b3%a8%e8%a7%a3">1.2.3. 注解</a></li>
+<li><a href="#124-%e6%b3%9b%e5%9e%8b">1.2.4. 泛型</a></li>
+<li><a href="#125-%e9%9b%86%e5%90%88">1.2.5. 集合</a></li>
+<li><a href="#126-%e5%8d%95%e5%85%83%e6%b5%8b%e8%af%95">1.2.6. 单元测试</a></li>
+<li><a href="#127-%e5%a4%9a%e7%ba%bf%e7%a8%8b">1.2.7. 多线程</a>
+<ul>
+<li><a href="#1271-thread">1.2.7.1. Thread</a></li>
+<li><a href="#1272-%e9%94%81">1.2.7.2. 锁</a></li>
+<li><a href="#1273-%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8%e9%9b%86%e5%90%88">1.2.7.3. 线程安全集合</a></li>
+<li><a href="#1274-%e7%ba%bf%e7%a8%8b%e6%b1%a0">1.2.7.4. 线程池</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#13-%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99">1.3. 参考资料</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="11-%e7%ae%80%e4%bb%8b">1.1. 简介</h2>
+<p>从互联网到企业平台，Java是应用最广泛的编程语言，原因在于：</p>
+<ul>
+<li>Java是基于JVM虚拟机的跨平台语言，一次编写，到处运行；</li>
+<li>Java程序易于编写，而且有内置垃圾收集，不必考虑内存管理；</li>
+<li>Java虚拟机拥有工业级的稳定性和高度优化的性能，且经过了长时期的考验；</li>
+<li>Java拥有最广泛的开源社区支持，各种高质量组件随时可用。</li>
+<li>Java语言常年霸占着三大市场：</li>
+</ul>
+<p>互联网和企业应用，这是Java EE的长期优势和市场地位；</p>
+<ul>
+<li>大数据平台，主要有Hadoop、Spark、Flink等，他们都是Java或Scala（一种运行于JVM的编程语言）开发的；</li>
+<li>Android移动平台。</li>
+<li>这意味着Java拥有最广泛的就业市场。</li>
+</ul>
+<h2 id="12-%e8%af%ad%e6%b3%95">1.2. 语法</h2>
+<h3 id="121-%e5%9f%ba%e7%a1%80">1.2.1. 基础</h3>
+<h4 id="1211-%e7%b1%bb%e5%9e%8b">1.2.1.1. 类型</h4>
+<ul>
+<li>类型，java没有无符号类型,无符号整型和有符号整型的转换在Java中就需要借助包装类型的静态方法完成。比如：<code>Byte.toUnsignedInt(y)</code></li>
+<li>整数类型：byte，short，int，long</li>
+<li>浮点数类型：float，double</li>
+<li>字符类型：char</li>
+<li>布尔类型：boolean</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>对应的引用类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte</td>
+<td>java.lang.Byte</td>
+</tr>
+<tr>
+<td>short</td>
+<td>java.lang.Short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>java.lang.Integer</td>
+</tr>
+<tr>
+<td>long</td>
+<td>java.lang.Long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>java.lang.Float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>java.lang.Double</td>
+</tr>
+<tr>
+<td>char</td>
+<td>java.lang.Character</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>java.lang.Boolean</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Java核心库提供的包装类型可以把基本类型包装为class；</li>
+<li>自动装箱和自动拆箱都是在编译期完成的（JDK&gt;=1.5）；</li>
+<li>装箱和拆箱会影响执行效率，且拆箱时可能发生NullPointerException；</li>
+<li>包装类型的比较必须使用equals()；</li>
+<li>整数和浮点数的包装类型都继承自Number；</li>
+<li>包装类型提供了大量实用方法。Integer.toString(100, 16),Integer.MAX_VALUE...</li>
+</ul>
+<p>浮点数除0不报错
+NaN表示Not a Number， 0.0 / 0; // NaN
+Infinity表示无穷大，1.0 / 0; // Infinity
+-Infinity表示负无穷大， -1.0 / 0; // -Infinity</p>
+<ul>
+<li>基本类型：byte，short，int，long，boolean，float，double，char</li>
+<li>引用类型：所有class和interface类型</li>
+<li>引用类型判断内容相等要使用equals()</li>
+<li>封装方法1：Integer n = new Integer(100);</li>
+<li>封装方法2：Integer n = Integer.valueOf(100);推介</li>
+</ul>
+<p>一个char保存一个Unicode字符
+要显示一个字符的Unicode编码，只需将char类型直接赋值给int类型即可
+\u#### 表示一个Unicode编码的字符，注意必须是4个数字</p>
+<p>var类似于c++中的auto，自动判断类型
+java中变量都会被初始化为默认值。false，0，nill</p>
+<h4 id="1212-%e6%b5%81%e7%a8%8b%e6%8e%a7%e5%88%b6">1.2.1.2. 流程控制</h4>
+<ul>
+<li>System.out.println()类似于printf</li>
+<li>从Java 13开始，switch语句升级为表达式，不再需要break，并且允许使用yield返回值。
+注意新语法使用-&gt;，如果有多条语句，需要用{}括起来。不要写break语句，因为新语法只会执行匹配的语句，没有穿透效应。
+使用新的switch语法，不但不需要break，还可以直接返回值。</li>
+</ul>
+<pre><code class="language-java"><div><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+        String fruit = <span class="hljs-string">"apple"</span>;
+        <span class="hljs-keyword">int</span> opt = <span class="hljs-keyword">switch</span> (fruit) {
+            <span class="hljs-keyword">case</span> <span class="hljs-string">"apple"</span> -&gt; <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">case</span> <span class="hljs-string">"pear"</span>, <span class="hljs-string">"mango"</span> -&gt; <span class="hljs-number">2</span>;
+            <span class="hljs-keyword">default</span> -&gt; <span class="hljs-number">0</span>;
+        }; <span class="hljs-comment">// 注意赋值语句要以;结束,opt赋值为1，2或0</span>
+        System.out.println(<span class="hljs-string">"opt = "</span> + opt);
+    }
+</div></code></pre>
+<ul>
+<li>Java也提供了另一种for each循环</li>
+</ul>
+<pre><code class="language-java"><div>    <span class="hljs-keyword">int</span>[] ns = { <span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">9</span>, <span class="hljs-number">16</span>, <span class="hljs-number">25</span> };
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> n : ns) {
+        System.out.println(n);
+    }
+</div></code></pre>
+<h4 id="1213-%e6%95%b0%e7%bb%84">1.2.1.3. 数组</h4>
+<ol>
+<li>Arrays.toString()，可以快速打印数组内容</li>
+<li>.length获取数组的长度，属性非方法</li>
+<li>可以直接使用Java标准库提供的Arrays.sort()进行排序；</li>
+<li>要打印一个二维数组，可以使用两层嵌套的for循环，或者使用Java标准库的Arrays.deepToString()</li>
+</ol>
+<h4 id="1214-%e7%b1%bb">1.2.1.4. 类</h4>
+<ul>
+<li>类定义中，类变量可以直接赋初值。</li>
+<li>Java使用extends关键字来实现继承</li>
+<li>在Java中，没有明确写extends的类，编译器会自动加上extends Object。</li>
+<li>super关键字表示父类（超类）。子类引用父类的字段时，可以用super.fieldName</li>
+<li>为了避免向下转型出错，Java提供了instanceof操作符，可以先判断一个实例究竟是不是某种类型</li>
+<li>Java继承没有public,protect,private,默认都是public继承</li>
+<li>方法名相同，方法参数相同，但方法返回值不同，在Java程序中，出现这种情况，编译器会报错。</li>
+<li>加上@Override可以让编译器帮助检查是否进行了正确的覆写。希望进行覆写，但是不小心写错了方法签名，编译器会报错，这是注解的应用。</li>
+<li>因为所有的class最终都继承自Object，而Object定义了几个重要的方法：
+toString()：把instance输出为String；
+equals()：判断两个instance是否逻辑相等；
+hashCode()：计算一个instance的哈希值。</li>
+<li>final
+如果一个父类不允许子类对它的某个方法进行覆写，可以把该方法标记为final。用final修饰的方法不能被Override
+final修饰的方法可以阻止被覆写；
+final修饰的class可以阻止被继承；
+final修饰的field必须在创建对象时初始化，随后不可修改。</li>
+<li>abstract 抽象类作用于函数的同时必须作用于类</li>
+<li>interface 接口关键字。如果一个抽象类没有字段，所有方法全部都是抽象方法，就可以把该抽象类改写为接口。所谓interface，就是比抽象类还要抽象的纯抽象接口，因为它连字段都不能有。因为接口定义的所有方法默认都是public abstract的，所以这两个修饰符不需要写出来（写不写效果都一样）。
+<ul>
+<li>当一个具体的class去实现一个interface时，需要使用implements关键字。在Java中，一个类只能继承自另一个类，不能从多个类继承。但是，一个类可以实现多个interface，例如：<code>class Student implements Person, Hello</code></li>
+<li>一个interface可以继承自另一个interface。interface继承自interface使用extends，它相当于扩展了接口的方法。</li>
+<li>在接口中，可以定义default方法。例如，把Person接口的run()方法改为default方法：<code>default void run()</code>，实现类可以不必覆写default方法。default方法的目的是，当我们需要给接口新增一个方法时，会涉及到修改全部子类。如果新增的是default方法，那么子类就不必全部修改，只需要在需要覆写的地方去覆写新增方法。</li>
+<li>因为interface是一个纯抽象类，所以它不能定义实例字段。但是，interface是可以有静态字段的，并且静态字段必须为final类型： <code>public static final int MALE = 1;</code>实际上，因为interface的字段只能是public static final类型，所以我们可以把这些修饰符都去掉，上述代码可以简写为：int MALE = 1;</li>
+<li>静态方法的访问，<code>类名.静态字段</code>来访问静态对象</li>
+</ul>
+</li>
+<li>使用package来解决名字冲突
+包可以是多层结构，用.隔开。例如：java.util。
+包没有父子关系。java.util和java.util.zip是不同的包，两者没有任何继承关系。
+没有定义包名的class，它使用的是默认包，非常容易引起名字冲突，因此，不推荐不写包名的做法。
+Java内建的package机制是为了避免class命名冲突；
+JDK的核心类使用java.lang包，编译器会自动导入；
+JDK的其它常用类定义在java.util.<em>，java.math.</em>，java.text.*，……；
+通过package ming来为文件添加package，通过import来包含包</li>
+<li>由于Java支持嵌套类，如果一个类内部还定义了嵌套类，那么，嵌套类拥有访问private的权限
+一个.java文件只能包含一个public类，但可以包含多个非public类。如果有public类，文件名必须和public类的名字相同。
+Java内建的访问权限包括public、protected、private和package权限；</li>
+</ul>
+<pre><code class="language-java"><div>Person p = <span class="hljs-keyword">new</span> Person();
+System.out.println(p <span class="hljs-keyword">instanceof</span> Person); <span class="hljs-comment">// true</span>
+System.out.println(p <span class="hljs-keyword">instanceof</span> Student); <span class="hljs-comment">// false</span>
+</div></code></pre>
+<pre><code class="language-java"><div><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{}
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Person</span> </span>{
+    <span class="hljs-meta">@Override</span> <span class="hljs-comment">// Compile error!</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">(String s)</span> </span>{}
+}
+</div></code></pre>
+<h4 id="1215-jar%e5%8c%85%e6%a8%a1%e5%9d%97">1.2.1.5. jar包，模块</h4>
+<ul>
+<li>classpath是JVM用到的一个环境变量，它用来指示JVM如何搜索class。</li>
+<li>jar包相当于目录，可以包含很多.class文件，方便下载和使用；MANIFEST.MF文件可以提供jar包的信息，如Main-Class，这样可以直接运行jar包。</li>
+<li>Java 9引入的模块目的是为了管理依赖；
+使用模块可以按需打包JRE；
+使用模块对类的访问权限有了进一步限制。</li>
+</ul>
+<h4 id="1216-string">1.2.1.6. String</h4>
+<ul>
+<li>
+<p>Java字符串String是不可变对象；</p>
+</li>
+<li>
+<p>字符串操作不改变原字符串内容，而是返回新字符串；</p>
+</li>
+<li>
+<p>常用的字符串操作：提取子串、查找、替换、大小写转换等；</p>
+</li>
+<li>
+<p>Java使用Unicode编码表示String和char；</p>
+</li>
+<li>
+<p>转换编码就是将String和byte[]转换，需要指定编码；</p>
+</li>
+<li>
+<p>转换为byte[]时，始终优先考虑UTF-8编码。</p>
+</li>
+<li>
+<p>StringBuilder是可变对象，用来高效拼接字符串；</p>
+</li>
+<li>
+<p>StringBuilder可以支持链式操作，实现链式操作的关键是返回实例本身；</p>
+</li>
+<li>
+<p>StringBuffer是StringBuilder的线程安全版本，现在很少使用。</p>
+</li>
+<li>
+<p>用指定分隔符拼接字符串数组时，使用StringJoiner或者String.join()更方便；</p>
+</li>
+<li>
+<p>用StringJoiner拼接字符串时，还可以额外附加一个“开头”和“结尾”。</p>
+</li>
+</ul>
+<p>多行字符串前面共同的空格会被去掉,如果多行字符串的排版不规则,总是以最短的行首空格为基准。最后&quot;&quot;&quot;与字符串同行不会加\n，如果换写&quot;&quot;&quot;会加\n</p>
+<pre><code class="language-java"><div>String s = <span class="hljs-string">""</span><span class="hljs-string">"
+        SELECT * FROM
+            users
+        WHERE id &gt; 100
+        ORDER BY name DESC"</span><span class="hljs-string">""</span>;
+</div></code></pre>
+<h4 id="1217-%e5%bc%82%e5%b8%b8">1.2.1.7. 异常</h4>
+<ul>
+<li>
+<p>Java使用异常来表示错误，并通过try ... catch捕获异常；</p>
+</li>
+<li>
+<p>Java的异常是class，并且从Throwable继承；</p>
+</li>
+<li>
+<p>Error是无需捕获的严重错误，Exception是应该捕获的可处理的错误；</p>
+</li>
+<li>
+<p>RuntimeException无需强制捕获，非RuntimeException（Checked Exception）需强制捕获，或者用throws声明；</p>
+</li>
+<li>
+<p>从继承关系可知：Throwable是异常体系的根，它继承自Object。Throwable有两个体系：Error和Exception</p>
+</li>
+<li>
+<p>Error表示严重的错误，程序对此一般无能为力，例如</p>
+<ul>
+<li>OutOfMemoryError：内存耗尽</li>
+<li>NoClassDefFoundError：无法加载某个Class</li>
+<li>StackOverflowError：栈溢出</li>
+</ul>
+</li>
+<li>
+<p>Exception分类如下
+Exception
+├─ RuntimeException
+│  ├─ NullPointerException 对某个null的对象调用方法或字段
+│  ├─ IndexOutOfBoundsException 数组索引越界
+│  ├─ SecurityException
+│  └─ IllegalArgumentException 非法参数
+│     └─ NumberFormatException 数值类型的格式错误
+├─ IOException
+│  ├─ UnsupportedCharsetException
+│  ├─ FileNotFoundException 未找到文件
+│  └─ SocketException 读取网络失败
+├─ ParseException
+├─ GeneralSecurityException
+├─ SQLException
+└─ TimeoutException</p>
+</li>
+<li>
+<p>必须捕获的异常，包括Exception及其子类，但不包括RuntimeException及其子类，这种类型的异常称为Checked Exception。</p>
+</li>
+<li>
+<p>不需要捕获的异常，包括Error及其子类，RuntimeException及其子类。</p>
+</li>
+<li>
+<p>使用try ... catch ... finally时</p>
+<ul>
+<li>多个catch语句的匹配顺序非常重要，子类必须放在前面；</li>
+<li>finally语句保证了有无异常都会执行，它是可选的；</li>
+<li>一个catch语句也可以匹配多个非继承关系的异常。<code>catch (IOException | NumberFormatException e)</code></li>
+</ul>
+</li>
+<li>
+<p>调用 printStackTrace()可以打印异常的传播栈，对于调试非常有用；</p>
+</li>
+<li>
+<p>捕获异常并再次抛出新的异常时，应该持有原始异常信息；</p>
+</li>
+<li>
+<p>通常不要在finally中抛出异常。如果在finally中抛出异常，应该原始异常加入到原有异常中。调用方可通过Throwable.getSuppressed()获取所有添加的Suppressed Exception。</p>
+</li>
+<li>
+<p>抛出异常时，尽量复用JDK已定义的异常类型；</p>
+</li>
+<li>
+<p>自定义异常体系时，推荐从RuntimeException派生“根异常”，再派生出业务异常；</p>
+</li>
+<li>
+<p>自定义异常时，应该提供多种构造方法。</p>
+</li>
+<li>
+<p>断言是一种调试方式，断言失败会抛出AssertionError，只能在开发和测试阶段启用断言；要执行assert语句，必须给Java虚拟机传递-enableassertions（可简写为-ea）参数启用断言。可以有选择地对特定地类启用断言，命令行参数是：-ea:com.itranswarp.sample.Main</p>
+</li>
+</ul>
+<h4 id="1218-%e6%97%a5%e5%bf%97">1.2.1.8. 日志</h4>
+<ul>
+<li>Java标准库
+<ul>
+<li>提供了java.util.logging来实现日志功能。</li>
+<li>Logging系统在JVM启动时读取配置文件并完成初始化，一旦开始运行main()方法，就无法修改配置；</li>
+<li>配置不太方便，需要在JVM启动时传递参数<code>-Djava.util.logging.config.file=&lt;config-file-name&gt;</code>。</li>
+<li>级别分7级。SEVERE/WARNING/INFO/CONFIG/FINE/FINER/FINEST</li>
+</ul>
+</li>
+<li>Commons Logging接口
+<ul>
+<li>是使用最广泛的日志模块；Commons Logging的API非常简单；</li>
+<li>Commons Loggin自动搜索并使用Log4j（Log4j是另一个流行的日志系统），如果没有找到Log4j，再使用JDK Logging。</li>
+<li>级别分6级。FATAL/ERROR/WARNING/INFO/DEBUG/TRACE</li>
+</ul>
+</li>
+<li>Log4j
+<ul>
+<li>通过Commons Logging接口实现日志，不需要修改代码即可使用Log4j；</li>
+<li>使用Log4j只需要把log4j2.xml和相关jar放入classpath；</li>
+<li>只有扩展Log4j时，才需要引用Log4j的接口（例如，将日志加密写入数据库的功能，需要自己开发）。</li>
+</ul>
+</li>
+<li>SLF4J和Logback
+<ul>
+<li>可以取代Commons Logging和Log4j；</li>
+<li>SLF4J支持python带{}格式的format</li>
+</ul>
+</li>
+</ul>
+<h4 id="1219-javabean">1.2.1.9. JavaBean</h4>
+<ul>
+<li>JavaBean是一种符合命名规范的class，它通过getter和setter来定义属性；</li>
+<li>属性是一种通用的叫法，并非Java语法规定；</li>
+<li>可以利用IDE快速生成getter和setter；</li>
+<li>使用Introspector.getBeanInfo()可以获取属性列表。</li>
+</ul>
+<h4 id="12110-enum">1.2.1.10. enum</h4>
+<ul>
+<li>Java使用enum定义枚举类型，它被编译器编译为final class Xxx extends Enum { … }；</li>
+<li>通过name()获取常量定义的字符串，注意不要使用toString()；</li>
+<li>通过ordinal()返回常量定义的顺序（无实质意义）；</li>
+<li>可以为enum编写构造方法、字段和方法</li>
+<li>enum的构造方法要声明为private，字段强烈建议声明为final；</li>
+<li>enum适合用在switch语句中。</li>
+</ul>
+<h4 id="12111-bigintegerbigdecimal">1.2.1.11. BigInteger/BigDecimal</h4>
+<ul>
+<li>
+<p>BigInteger用于表示任意大小的整数；</p>
+</li>
+<li>
+<p>BigInteger是不变类，并且继承自Number；</p>
+</li>
+<li>
+<p>将BigInteger转换成基本类型时可使用longValueExact()等方法保证结果准确。</p>
+</li>
+<li>
+<p>BigDecimal用于表示精确的小数，常用于财务计算；</p>
+</li>
+<li>
+<p>比较BigDecimal的值是否相等，必须使用compareTo()而不能使用equals()。</p>
+</li>
+</ul>
+<h4 id="12112-%e5%b7%a5%e5%85%b7%e7%b1%bb">1.2.1.12. 工具类</h4>
+<ul>
+<li>Math：数学计算</li>
+<li>Random：生成伪随机数</li>
+<li>SecureRandom：生成安全的随机数</li>
+</ul>
+<h3 id="122-%e5%8f%8d%e5%b0%84">1.2.2. 反射</h3>
+<ul>
+<li>JVM为每个加载的class及interface创建了对应的Class实例来保存class及interface的所有信息；</li>
+<li>获取一个class对应的Class实例后，就可以获取该class的所有信息；</li>
+<li>通过Class实例获取class信息的方法称为反射（Reflection）；</li>
+<li>JVM总是动态加载class，可以在运行期根据条件来控制加载class。</li>
+<li>如何获取一个class的Class实例？有三个方法：
+<ul>
+<li>方法一：直接通过一个class的静态变量class获取：<code>Class cls = String.class;</code></li>
+<li>方法二：如果我们有一个实例变量，可以通过该实例变量提供的getClass()方法获取：<code>String s = &quot;Hello&quot;;Class cls = s.getClass();</code></li>
+<li>方法三：如果知道一个class的完整类名，可以通过静态方法Class.forName()获取：<code>Class cls = Class.forName(&quot;java.lang.String&quot;);</code></li>
+</ul>
+</li>
+<li>除了int等基本类型外，Java的其他类型全部都是class（包括interface）</li>
+<li>Class的方法：<code>getName(); getSimpleName(); cls.getPackage().getName(); isInterface(); isEnum(); isArray(); isPrimitive()...</code></li>
+<li>Java的反射API提供的Field类封装了字段的所有信息：</li>
+<li>Class-Field
+<ul>
+<li>通过Class实例的方法可以获取Field实例
+<ul>
+<li>Field getField(name)：根据字段名获取某个public的field（包括父类）</li>
+<li>Field getDeclaredField(name)：根据字段名获取当前类的某个field（不包括父类）</li>
+<li>Field[] getFields()：获取所有public的field（包括父类）</li>
+<li>Field[] getDeclaredFields()：获取当前类的所有field（不包括父类）</li>
+</ul>
+</li>
+<li>通过Field实例可以获取字段信息：getName()，getType()，getModifiers()；</li>
+<li>通过Field实例可以读取或设置某个对象的字段，如果存在访问限制，要首先调用setAccessible(true)来访问非public字段。</li>
+<li>通过反射读写字段是一种非常规方法，它会破坏对象的封装。</li>
+<li>一个Field对象包含了一个字段的所有信息：
+<ul>
+<li>getName()：返回字段名称，例如，&quot;name&quot;；</li>
+<li>getType()：返回字段类型，也是一个Class实例，例如，String.class；</li>
+<li>getModifiers()：返回字段的修饰符，它是一个int，不同的bit表示不同的含义。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Class-Method
+<ul>
+<li>Java的反射API提供的Method对象封装了方法的所有信息：</li>
+<li>通过Class实例的方法可以获取Method实例
+<ul>
+<li>Method getMethod(name, Class...)：获取某个public的Method（包括父类）</li>
+<li>Method getDeclaredMethod(name, Class...)：获取当前类的某个Method（不包括父类）</li>
+<li>Method[] getMethods()：获取所有public的Method（包括父类）</li>
+<li>Method[] getDeclaredMethods()：获取当前类的所有Method（不包括父类）</li>
+</ul>
+</li>
+<li>通过Method实例可以获取方法信息：getName()，getReturnType()，getParameterTypes()，getModifiers()；</li>
+<li>通过Method实例可以调用某个对象的方法：Object invoke(Object instance, Object... parameters)；</li>
+<li>通过设置setAccessible(true)来访问非public方法；</li>
+<li>通过反射调用方法时，仍然遵循多态原则。</li>
+<li>一个Method对象包含一个方法的所有信息：
+<ul>
+<li>getName()：返回方法名称，例如：&quot;getScore&quot;；</li>
+<li>getReturnType()：返回方法返回值类型，也是一个Class实例，例如：String.class；</li>
+<li>getParameterTypes()：返回方法的参数类型，是一个Class数组，例如：{String.class, int.class}；</li>
+<li>getModifiers()：返回方法的修饰符，它是一个int，不同的bit表示不同的含义。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Class-Constructor
+<ul>
+<li>可以通过Class的newInstance() 实例化类。调用Class.newInstance()的局限是，它只能调用该类的public无参数构造方法。如果构造方法带有参数，或者不是public，就无法直接通过Class.newInstance()来调用。需要通过Constructor来构建。</li>
+<li>Constructor对象封装了构造方法的所有信息；</li>
+<li>通过Class实例的方法可以获取Constructor实例
+<ul>
+<li>getConstructor(Class...)：获取某个public的Constructor；</li>
+<li>getDeclaredConstructor(Class...)：获取某个Constructor；</li>
+<li>getConstructors()：获取所有public的Constructor；</li>
+<li>getDeclaredConstructors()：获取所有Constructor。</li>
+</ul>
+</li>
+<li>通过Constructor实例可以创建一个实例对象：newInstance(Object... parameters)； 通过设置setAccessible(true)来访问非public构造方法。</li>
+</ul>
+</li>
+<li>继承关系
+<ul>
+<li>通过Class对象可以获取继承关系：</li>
+<li>Class getSuperclass()：获取父类类型；</li>
+<li>Class[] getInterfaces()：获取当前类实现的所有接口。</li>
+<li>通过Class对象的isAssignableFrom()方法可以判断一个向上转型是否可以实现。</li>
+<li>对接口调用getSuperclass()总是返回null，获取接口的父接口要用getInterfaces()</li>
+</ul>
+</li>
+<li>动态代理
+<ul>
+<li>Java标准库提供了动态代理功能，允许在运行期动态创建一个接口的实例；</li>
+<li>动态代理是通过Proxy创建代理对象，然后将接口方法“代理”给InvocationHandler完成的。</li>
+</ul>
+</li>
+</ul>
+<h3 id="123-%e6%b3%a8%e8%a7%a3">1.2.3. 注解</h3>
+<ul>
+<li>
+<p>注解（Annotation）是Java语言用于工具处理的标注：</p>
+</li>
+<li>
+<p>注解可以配置参数，没有指定配置的参数使用默认值；</p>
+</li>
+<li>
+<p>如果参数名称是value，且只有一个参数，那么可以省略参数名称。</p>
+</li>
+<li>
+<p>注解定义后也是一种class，所有的注解都继承自java.lang.annotation.Annotation，因此，读取注解，需要使用反射API。</p>
+</li>
+<li>
+<p>Java使用@interface定义注解：</p>
+</li>
+<li>
+<p>可定义多个参数和默认值，核心参数使用value名称；</p>
+</li>
+<li>
+<p>必须设置@Target来指定Annotation可以应用的范围；使用@Target可以定义Annotation能够被应用于源码的哪些位置：</p>
+<ul>
+<li>类或接口：ElementType.TYPE；</li>
+<li>字段：ElementType.FIELD；</li>
+<li>方法：ElementType.METHOD；</li>
+<li>构造方法：ElementType.CONSTRUCTOR；</li>
+<li>方法参数：ElementType.PARAMETER。</li>
+</ul>
+</li>
+<li>
+<p>应当设置@Retention(RetentionPolicy.RUNTIME)便于运行期读取该Annotation。SOURCE类型的注解主要由编译器使用，因此我们一般只使用，不编写。CLASS类型的注解主要由底层工具库使用，涉及到class的加载，一般我们很少用到。</p>
+<ul>
+<li>仅编译期：RetentionPolicy.SOURCE；</li>
+<li>仅class文件：RetentionPolicy.CLASS；</li>
+<li>运行期：RetentionPolicy.RUNTIME。</li>
+</ul>
+</li>
+<li>
+<p>使用@Repeatable这个元注解可以定义Annotation是否可重复。</p>
+</li>
+<li>
+<p>使用@Inherited定义子类是否可继承父类定义的Annotation</p>
+</li>
+<li>
+<p>判断某个注解是否存在于Class、Field、Method或Constructor：</p>
+<ul>
+<li>Class.isAnnotationPresent(Class)</li>
+<li>Field.isAnnotationPresent(Class)</li>
+<li>Method.isAnnotationPresent(Class)</li>
+<li>Constructor.isAnnotationPresent(Class)</li>
+</ul>
+</li>
+<li>
+<p>使用反射API读取Annotation：</p>
+<ul>
+<li>Class.getAnnotation(Class)</li>
+<li>Field.getAnnotation(Class)</li>
+<li>Method.getAnnotation(Class)</li>
+<li>Constructor.getAnnotation(Class)</li>
+<li>Method.getParameterAnnotations()</li>
+</ul>
+</li>
+<li>
+<p>读取方法参数的Annotation就比较麻烦一点，因为方法参数本身可以看成一个数组，而每个参数又可以定义多个注解，所以，一次获取方法参数的所有注解就必须用一个二维数组来表示</p>
+</li>
+<li>
+<p>使用反射API读取Annotation有两种方法。方法一是先判断Annotation是否存在，如果存在，就直接读取</p>
+</li>
+<li>
+<p>第二种方法是直接读取Annotation，如果Annotation不存在，将返回null</p>
+</li>
+<li>
+<p>注解如何使用，完全由程序自己决定。我们通过@Range注解，配合check()方法，可以完成Person实例的检查。</p>
+</li>
+</ul>
+<pre><code class="language-java"><div><span class="hljs-meta">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="hljs-meta">@Target</span>(ElementType.FIELD)
+<span class="hljs-keyword">public</span> <span class="hljs-meta">@interface</span> Range {
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">min</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> 0</span>;
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">max</span><span class="hljs-params">()</span> <span class="hljs-keyword">default</span> 255</span>;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>{
+    <span class="hljs-meta">@Range</span>(min=<span class="hljs-number">1</span>, max=<span class="hljs-number">20</span>)
+    <span class="hljs-keyword">public</span> String name;
+
+    <span class="hljs-meta">@Range</span>(max=<span class="hljs-number">10</span>)
+    <span class="hljs-keyword">public</span> String city;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">check</span><span class="hljs-params">(Person person)</span> <span class="hljs-keyword">throws</span> IllegalArgumentException, ReflectiveOperationException </span>{
+    <span class="hljs-comment">// 遍历所有Field:</span>
+    <span class="hljs-keyword">for</span> (Field field : person.getClass().getFields()) {
+        <span class="hljs-comment">// 获取Field定义的@Range:</span>
+        Range range = field.getAnnotation(Range.class);
+        <span class="hljs-comment">// 如果@Range存在:</span>
+        <span class="hljs-keyword">if</span> (range != <span class="hljs-keyword">null</span>) {
+            <span class="hljs-comment">// 获取Field的值:</span>
+            Object value = field.get(person);
+            <span class="hljs-comment">// 如果值是String:</span>
+            <span class="hljs-keyword">if</span> (value <span class="hljs-keyword">instanceof</span> String) {
+                String s = (String) value;
+                <span class="hljs-comment">// 判断值是否满足@Range的min/max:</span>
+                <span class="hljs-keyword">if</span> (s.length() &lt; range.min() || s.length() &gt; range.max()) {
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">"Invalid field: "</span> + field.getName());
+                }
+            }
+        }
+    }
+}
+</div></code></pre>
+<h3 id="124-%e6%b3%9b%e5%9e%8b">1.2.4. 泛型</h3>
+<ul>
+<li>
+<p>泛型就是编写模板代码来适应任意类型；</p>
+</li>
+<li>
+<p>泛型的好处是使用时不必对类型进行强制转换，它通过编译器对类型进行检查；</p>
+</li>
+<li>
+<p>注意泛型的继承关系：可以把<code>ArrayList&lt;Integer&gt;</code>向上转型为<code>List&lt;Integer&gt;</code>（T不能变！），但不能把<code>ArrayList&lt;Integer&gt;</code>向上转型为<code>ArrayList&lt;Number&gt;</code>（T不能变成父类）。</p>
+</li>
+<li>
+<p>使用泛型时，把泛型参数<code>&lt;T&gt;</code>替换为需要的class类型，例如：<code>ArrayList&lt;String&gt;，ArrayList&lt;Number&gt;</code>等；</p>
+</li>
+<li>
+<p>可以省略编译器能自动推断出的类型，例如：<code>List&lt;String&gt; list = new ArrayList&lt;&gt;();</code>；</p>
+</li>
+<li>
+<p>不指定泛型参数类型时，编译器会给出警告，且只能将<code>&lt;T&gt;</code>视为Object类型；</p>
+</li>
+<li>
+<p>可以在接口中定义泛型类型，实现此接口的类必须实现正确的泛型类型。</p>
+</li>
+<li>
+<p>编写泛型时，需要定义泛型类型<code>&lt;T&gt;</code>；
+-静态方法不能引用泛型类型<code>&lt;T&gt;</code>，必须定义其他类型（例如<code>&lt;K&gt;</code>）来实现静态泛型方法；</p>
+</li>
+<li>
+<p>泛型可以同时定义多种类型，例如<code>Map&lt;K, V&gt;</code>。</p>
+</li>
+<li>
+<p>Java的泛型是采用擦拭法实现的；所谓擦拭法是指，虚拟机对泛型其实一无所知，所有的工作都是编译器做的。编译器把类型<code>&lt;T&gt;</code>视为Object；编译器根据<code>&lt;T&gt;</code>实现安全的强制转型。</p>
+</li>
+<li>
+<p>擦拭法决定了泛型<code>&lt;T&gt;</code>：</p>
+<ul>
+<li>不能是基本类型，例如：int；</li>
+<li>不能获取带泛型类型的Class，例如：<code>Pair&lt;String&gt;.class</code>；</li>
+<li>不能判断带泛型类型的类型，例如：<code>x instanceof Pair&lt;String&gt;</code>；</li>
+<li>不能实例化T类型，例如：<code>new T()</code>。</li>
+</ul>
+</li>
+<li>
+<p>泛型方法要防止重复定义方法，例如：<code>public boolean equals(T obj)</code>；</p>
+</li>
+<li>
+<p>子类可以获取父类的泛型类型<code>&lt;T&gt;</code>。
+┌────┐
+│Type│
+└────┘
+▲
+│
+┌────────────┬────────┴─────────┬───────────────┐
+│            │                  │               │
+┌─────┐┌─────────────────┐┌────────────────┐┌────────────┐
+│Class││ParameterizedType││GenericArrayType││WildcardType│
+└─────┘└─────────────────┘└────────────────┘└────────────┘</p>
+</li>
+<li>
+<p>extends和super,使用extends和super通配符要遵循PECS原则。Producer Extends Consumer Super.如果需要返回T，它是生产者（Producer），要使用extends通配符；如果需要写入T，它是消费者（Consumer），要使用super通配符。</p>
+</li>
+<li>
+<p>extends</p>
+<ul>
+<li>允许调用读方法<code>T get()</code>获取T的引用，但不允许调用写方法<code>set(T)</code>传入T的引用（传入null除外）；</li>
+<li>使用类似<code>&lt;T extends Number&gt;</code>定义泛型类时表示：泛型类型限定为Number以及Number的子类。</li>
+</ul>
+</li>
+<li>
+<p>super</p>
+<ul>
+<li>允许调用写方法<code>set(T)</code>传入T的引用，但不允许调用读方法<code>T get()</code>获取T的引用（获取Object除外）</li>
+<li>使用类似<code>&lt;T super Number&gt;</code>定义泛型类时表示：泛型类型限定为Number以及Number的父类。</li>
+</ul>
+</li>
+<li>
+<p>无限定通配符&lt;?&gt;很少使用，可以用<code>&lt;T&gt;</code>替换，同时它是所有<code>&lt;T&gt;</code>类型的超类。</p>
+</li>
+<li>
+<p>部分反射API是泛型，例如：<code>Class&lt;T&gt;，Constructor&lt;T&gt;</code>；</p>
+</li>
+<li>
+<p>可以声明带泛型的数组，但不能直接创建带泛型的数组，必须强制转型；</p>
+</li>
+<li>
+<p>可以通过<code>Array.newInstance(Class&lt;T&gt;, int)</code>创建T[]数组，需要强制转型；</p>
+</li>
+<li>
+<p>同时使用泛型和可变参数时需要特别小心。</p>
+</li>
+</ul>
+<h3 id="125-%e9%9b%86%e5%90%88">1.2.5. 集合</h3>
+<ul>
+<li>Java的集合类定义在java.util包中，支持泛型，主要提供了3种集合类，包括List，Set和Map。Java集合使用统一的Iterator遍历，尽量不要使用遗留接口。(Hashtable：一种线程安全的Map实现；Vector：一种线程安全的List实现；Stack：基于Vector实现的LIFO的栈。<code>Enumeration&lt;E&gt;</code>：已被<code>Iterator&lt;E&gt;</code>取代)。</li>
+<li>List
+<ul>
+<li><code>List&lt;E&gt;</code>是接口，实现List接口并非只能通过数组（即ArrayList的实现方式）来实现，另一种LinkedList通过“链表”也实现了List接口。</li>
+<li>在末尾添加一个元素：void add(E e)，List还允许添加null</li>
+<li>在指定索引添加一个元素：void add(int index, E e)</li>
+<li>删除指定索引的元素：int remove(int index)</li>
+<li>删除某个元素：int remove(Object e)</li>
+<li>获取指定索引的元素：E get(int index)</li>
+<li>获取链表大小（包含元素的个数）：int size()</li>
+<li>创建List，<code>List&lt;String&gt; list = new ArrayList&lt;&gt;();</code>,<code>List&lt;String&gt; list = new LinkedList&lt;&gt;();</code>,<code>List&lt;Integer&gt; list = List.of(1, 2, 5);</code>List.of()方法不接受null值</li>
+<li>使用迭代器Iterator来访问List。Iterator本身也是一个对象,boolean hasNext()判断是否有下一个元素，E next()返回下一个元素。</li>
+<li>List转Array：
+<ul>
+<li><code>List&lt;String&gt; list = List.of(&quot;apple&quot;, &quot;pear&quot;, &quot;banana&quot;);</code></li>
+<li><code>Object[] array = list.toArray();</code></li>
+<li><code>Integer[] array = list.toArray(new Integer[3]);</code>如果传入的数组不够大，那么List内部会创建一个新的刚好够大的数组，填充后返回；如果传入的数组比List元素还要多，那么填充完元素后，剩下的数组元素一律填充null。</li>
+<li><code>Integer[] array = list.toArray(new Integer[list.size()]);</code></li>
+<li><code>Integer[] array = list.toArray(Integer[]::new);</code></li>
+</ul>
+</li>
+<li>Array转List：
+<ul>
+<li>返回的List不一定就是ArrayList或者LinkedList，因为List只是一个接口，如果我们调用List.of()，它返回的是一个只读List</li>
+<li><code>Integer[] array = { 1, 2, 3 };</code></li>
+<li><code>List&lt;Integer&gt; list = List.of(array);</code></li>
+<li><code>List&lt;Integer&gt; list = Arrays.asList(array);</code></li>
+</ul>
+</li>
+<li>重写equals()，类似C++的重载
+<ul>
+<li>在List中查找元素时，List的实现类通过元素的equals()方法比较两个元素是否相等，因此，放入的元素必须正确覆写equals()方法，Java标准库提供的String、Integer等已经覆写了equals()方法；</li>
+<li>编写equals()方法可借助Objects.equals()判断。</li>
+<li>如果不在List中查找元素，就不必覆写equals()方法。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Map
+<ul>
+<li>Map也是一个接口，最常用的实现类是HashMap。</li>
+<li>Map是一种映射表，可以通过key快速查找value。</li>
+<li>可以通过for each遍历keySet()，也可以通过for each遍历entrySet()，直接获取key-value。</li>
+<li><code>Map&lt;String, Student&gt; map = new HashMap&lt;&gt;();</code></li>
+<li><code>map.put(&quot;Xiao Ming&quot;, s);</code>put()方法的签名是V put(K key, V value)，如果放入的key已经存在，put()方法会返回被删除的旧的value，否则，返回null。</li>
+<li><code>Student target = map.get(&quot;Xiao Ming&quot;);</code></li>
+<li><code>for (String key : map.keySet())    for (Map.Entry&lt;String, Integer&gt; entry : map.entrySet())</code></li>
+<li>如果只是想查询某个key是否存在，可以调用boolean containsKey(K key)方法。</li>
+<li>要正确使用HashMap，作为key的类必须正确覆写equals()和hashCode()方法；</li>
+</ul>
+</li>
+<li>EnumMap
+<ul>
+<li>如果Map的key是enum类型，推荐使用EnumMap，既保证速度，也不浪费空间。</li>
+<li>使用EnumMap的时候，根据面向抽象编程的原则，应持有Map接口。</li>
+</ul>
+</li>
+<li>SortedMap
+<ul>
+<li>它在内部会对Key进行排序，这种Map就是SortedMap。注意到SortedMap是接口，它的实现类是TreeMap。</li>
+<li>SortedMap在遍历时严格按照Key的顺序遍历，最常用的实现类是TreeMap；</li>
+<li>作为SortedMap的Key必须实现Comparable接口，或者传入Comparator；</li>
+<li>要严格按照compare()规范实现比较逻辑，否则，TreeMap将不能正常工作。</li>
+</ul>
+</li>
+<li>Properties
+<ul>
+<li>Java集合库提供的Properties用于读写配置文件.properties。.properties文件可以使用UTF-8编码。</li>
+<li>可以从文件系统、classpath或其他任何地方读取.properties文件。</li>
+<li>读写Properties时，注意仅使用getProperty()和setProperty()方法，不要调用继承而来的get()和put()等方法。</li>
+<li><code>Properties props = new Properties();props.load(new java.io.FileInputStream(f));String filepath = props.getProperty(&quot;last_open_file&quot;);</code></li>
+</ul>
+</li>
+<li>Set
+<ul>
+<li>Set用于存储不重复的元素集合：</li>
+<li>遍历SortedSet按照元素的排序顺序遍历，也可以自定义排序算法。</li>
+<li>将元素添加进<code>Set&lt;E&gt;：boolean add(E e)</code></li>
+<li>将元素从<code>Set&lt;E&gt;</code>删除：<code>boolean remove(Object e)</code></li>
+<li>判断是否包含元素：<code>boolean contains(Object e)</code>
+┌───┐
+│Set│
+└───┘
+▲
+┌────┴─────┐
+│          │
+┌───────┐ ┌─────────┐
+│HashSet│ │SortedSet│
+└───────┘ └─────────┘
+▲
+│
+┌─────────┐
+│ TreeSet │
+└─────────┘</li>
+</ul>
+</li>
+<li>Queue
+<ul>
+<li>队列Queue实现了一个先进先出（FIFO）的数据结构：</li>
+<li>int size()：获取队列长度；</li>
+<li>boolean add(E)/boolean offer(E)：添加元素到队尾；前者抛异常，后者返回失败</li>
+<li>E remove()/E poll()：获取队首元素并从队列中删除；前者抛异常，后者返回失败</li>
+<li>E element()/E peek()：获取队首元素但并不从队列中删除。前者抛异常，后者返回失败</li>
+<li>LinkedList 即实现了List接口，又实现了Queue接口</li>
+</ul>
+</li>
+<li>PriorityQueue
+<ul>
+<li>PriorityQueue实现了一个优先队列：从队首获取元素时，总是获取优先级最高的元素。</li>
+<li>PriorityQueue默认按元素比较的顺序排序（必须实现Comparable接口），也可以通过Comparator自定义排序算法（元素就不必实现Comparable接口）。</li>
+</ul>
+</li>
+<li>Deque
+<ul>
+<li>既可以添加到队尾，也可以添加到队首；既可以从队首获取，又可以从队尾获取。</li>
+<li>Deque是一个接口，它的实现类有ArrayDeque和LinkedList。</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>Queue</th>
+<th>Deque</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>添加元素到队尾</td>
+<td>add(E e) / offer(E e)</td>
+<td>addLast(E e) / offerLast(E e)</td>
+</tr>
+<tr>
+<td>取队首元素并删除</td>
+<td>E remove() / E poll()</td>
+<td>E removeFirst() / E pollFirst()</td>
+</tr>
+<tr>
+<td>取队首元素但不删除</td>
+<td>E element() / E peek()</td>
+<td>E getFirst() / E peekFirst()</td>
+</tr>
+<tr>
+<td>添加元素到队首</td>
+<td>无</td>
+<td>addFirst(E e) / offerFirst(E e)</td>
+</tr>
+<tr>
+<td>取队尾元素并删除</td>
+<td>无</td>
+<td>E removeLast() / E pollLast()</td>
+</tr>
+<tr>
+<td>取队尾元素但不删除</td>
+<td>无</td>
+<td>E getLast() / E peekLast()</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Stack
+<ul>
+<li>把元素压栈：push(E)；</li>
+<li>把栈顶的元素“弹出”：pop(E)；</li>
+<li>取栈顶元素但不弹出：peek(E)。</li>
+<li>Java中的Stack继承Vector，而Vector是由数组实现的集合类，所以是低效的，建议别直接使用Java的Stack。</li>
+<li>用Deque可以实现Stack的功能，注意只调用 push()/pop()/peek() 方法，避免调用Deque的其他方法。</li>
+</ul>
+</li>
+<li>Iterator
+<ul>
+<li>集合类实现Iterable接口，该接口要求返回一个Iterator对象；</li>
+<li>用Iterator对象迭代集合内部数据。</li>
+<li>Java提供了标准的迭代器模型，即集合类实现java.util.Iterable接口，返回java.util.Iterator实例。</li>
+</ul>
+</li>
+<li>Collections
+<ul>
+<li>创建空集合；/创建单元素集合；/创建不可变集合；/排序/洗牌/线程安全等操作。</li>
+<li>是JDK提供的工具类，同样位于java.util包中。它提供了一系列静态方法，能更方便地操作各种集合。</li>
+<li>Collections可以对List进行排序。Collections.sort(list);</li>
+<li>Collections提供了洗牌算法.Collections.shuffle(list);</li>
+<li>封装成不可变List：<code>List&lt;T&gt; unmodifiableList(List&lt;? extends T&gt; list)</code></li>
+<li>封装成不可变Set：<code>Set&lt;T&gt; unmodifiableSet(Set&lt;? extends T&gt; set)</code></li>
+<li>封装成不可变Map：<code>Map&lt;K, V&gt; unmodifiableMap(Map&lt;? extends K, ? extends V&gt; m)</code>
+然而，继续对原始的可变List进行增删是可以的，并且，会直接影响到封装后的“不可变”List</li>
+</ul>
+</li>
+</ul>
+<h3 id="126-%e5%8d%95%e5%85%83%e6%b5%8b%e8%af%95">1.2.6. 单元测试</h3>
+<ul>
+<li>JUnit
+<ul>
+<li>JUnit是一个单元测试框架，专门用于运行我们编写的单元测试：</li>
+<li>一个JUnit测试包含若干<code>@Test</code>方法，并使用Assertions进行断言，注意浮点数assertEquals()要指定delta。</li>
+<li>当我们已经编写了一个Factorial.java文件后，我们想对其进行测试，需要编写一个对应的FactorialTest.java文件，以Test为后缀是一个惯例，并分别将其放入src和test目录中。</li>
+<li>编写Fixture是指针对每个@Test方法，编写@BeforeEach方法用于初始化测试资源，编写@AfterEach用于清理测试资源；</li>
+<li>必要时，可以编写@BeforeAll和@AfterAll，使用静态变量来初始化耗时的资源，并且在所有@Test方法的运行前后仅执行一次。</li>
+<li>核心测试方法testFact()加上了@Test注解，这是JUnit要求的，它会把带有@Test的方法识别为测试方法。</li>
+<li>assertTrue(): 期待结果为true</li>
+<li>assertFalse(): 期待结果为false</li>
+<li>assertNotNull(): 期待结果为非null</li>
+<li>assertArrayEquals(): 期待结果为数组并与期望数组每个元素的值均相等</li>
+<li>assertThrows(): 期待捕获到指定类型的异常</li>
+<li><code>@ParameterizedTest</code>: 代替<code>@Test</code>，需要提供数据源，方式如下
+<ul>
+<li>通过<code>@ValueSource</code>提供一组数据</li>
+<li>通过<code>@MethodSource</code>注解，它允许我们编写一个同名的静态方法来提供测试参数</li>
+<li>通过<code>@CsvSource</code>，它的每一个字符串表示一行，一行包含的若干参数用,分隔</li>
+<li>通过<code>@CsvFileSource(resources = { &quot;/test-capitalize.csv&quot; })</code>导入测试文件</li>
+</ul>
+</li>
+<li><code>@EnabledOnOs(OS.WINDOWS),@EnabledOnOs({ OS.LINUX, OS.MAC })</code> 指定系统</li>
+<li><code>@Disabled</code> 不允许，但是结果中会统计</li>
+<li><code>@DisabledOnJre(JRE.JAVA_8)</code>只能在Java 9或更高版本执行的测试</li>
+<li><code>@EnabledIfSystemProperty(named = &quot;os.arch&quot;, matches = &quot;.*64.*&quot;)</code>只能在64位操作系统上执行的测试</li>
+<li><code>@EnabledIfEnvironmentVariable(named = &quot;DEBUG&quot;, matches = &quot;true&quot;)</code> 需要传入环境变量DEBUG=true才能执行的测试</li>
+<li><code>@EnableIf</code> 可以执行任意Java语句并根据返回的boolean决定是否执行测试,比如：<code>@EnabledIf(&quot;java.time.LocalDate.now().getDayOfWeek()==java.time.DayOfWeek.SUNDAY&quot;)</code></li>
+<li>使用参数化测试，可以提供一组测试数据，对一个测试方法反复测试。</li>
+<li>参数既可以在测试代码中写死，也可以通过@CsvFileSource放到外部的CSV文件中。</li>
+</ul>
+</li>
+</ul>
+<h3 id="127-%e5%a4%9a%e7%ba%bf%e7%a8%8b">1.2.7. 多线程</h3>
+<h4 id="1271-thread">1.2.7.1. Thread</h4>
+<ul>
+<li>
+<p>Java用Thread对象表示一个线程，通过调用start()启动一个新线程；</p>
+</li>
+<li>
+<p>一个线程对象只能调用一次start()方法；</p>
+</li>
+<li>
+<p>线程的执行代码写在run()方法中；</p>
+</li>
+<li>
+<p>线程调度由操作系统决定，程序本身无法决定调度顺序；</p>
+</li>
+<li>
+<p>Thread.sleep()可以把当前线程暂停一段时间。</p>
+</li>
+<li>
+<p>Java线程对象Thread的状态包括：New、Runnable、Blocked、Waiting、Timed Waiting和Terminated；</p>
+</li>
+<li>
+<p>通过对另一个线程对象调用join()方法可以等待其执行结束；</p>
+</li>
+<li>
+<p>可以指定等待时间，超过等待时间线程仍然没有结束就不再等待；</p>
+</li>
+<li>
+<p>对已经运行结束的线程调用join()方法会立刻返回。</p>
+</li>
+<li>
+<p>对目标线程调用interrupt()方法可以请求中断一个线程，目标线程通过检测isInterrupted()标志获取自身是否已中断。如果目标线程处于等待状态，该线程会捕获到InterruptedException；</p>
+</li>
+<li>
+<p>目标线程检测到isInterrupted()为true或者捕获了InterruptedException都应该立刻结束自身线程；</p>
+</li>
+<li>
+<p>通过标志位判断需要正确使用volatile关键字；volatile关键字解决了共享变量在线程间的可见性问题。</p>
+</li>
+<li>
+<p>守护线程是为其他线程服务的线程；<code>setDaemon(true)</code>;</p>
+</li>
+<li>
+<p>所有非守护线程都执行完毕后，虚拟机退出；</p>
+</li>
+<li>
+<p>守护线程不能持有需要关闭的资源（如打开文件等）。</p>
+</li>
+</ul>
+<h4 id="1272-%e9%94%81">1.2.7.2. 锁</h4>
+<ul>
+<li>synchronized
+<ul>
+<li>
+<p>多线程同时读写共享变量时，会造成逻辑错误，因此需要通过synchronized同步；<code>synchronized (obj)</code></p>
+</li>
+<li>
+<p>同步的本质就是给指定对象加锁，加锁后才能继续执行后续代码；</p>
+</li>
+<li>
+<p>注意加锁对象必须是同一个实例；对JVM定义的单个原子操作不需要同步。</p>
+</li>
+<li>
+<p>JVM规范定义了几种原子操作：</p>
+<ul>
+<li>基本类型（long和double除外）赋值，例如：<code>int n = m；</code></li>
+<li>引用类型赋值，例如：<code>List&lt;String&gt; list = anotherList。</code></li>
+<li>long和double是64位数据，JVM没有明确规定64位赋值操作是不是一个原子操作，不过在x64平台的JVM是把long和double的赋值作为原子操作实现的。</li>
+</ul>
+</li>
+<li>
+<p>用synchronized修饰方法可以把整个方法变为同步代码块，synchronized方法加锁对象是this；</p>
+</li>
+<li>
+<p>Java的synchronized锁是可重入锁；</p>
+</li>
+<li>
+<p>避免死锁的方法是多线程获取锁的顺序要一致。</p>
+</li>
+<li>
+<p>wait和notify用于多线程协调运行：</p>
+<ul>
+<li>在synchronized内部可以调用wait()使线程进入等待状态；</li>
+<li>必须在已获得的锁对象上调用wait()方法；</li>
+<li>在synchronized内部可以调用notify()或notifyAll()唤醒其他等待线程；</li>
+<li>必须在已获得的锁对象上调用notify()或notifyAll()方法；</li>
+<li>已唤醒的线程还需要重新获得锁后才能继续执行。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-java"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TaskQueue</span> </span>{
+    Queue&lt;String&gt; queue = <span class="hljs-keyword">new</span> LinkedList&lt;&gt;();
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addTask</span><span class="hljs-params">(String s)</span> </span>{
+        <span class="hljs-keyword">this</span>.queue.add(s);
+        <span class="hljs-keyword">this</span>.notifyAll();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> String <span class="hljs-title">getTask</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> InterruptedException </span>{
+        <span class="hljs-keyword">while</span> (queue.isEmpty()) {
+            <span class="hljs-keyword">this</span>.wait();
+        }
+        <span class="hljs-keyword">return</span> queue.remove();
+    }
+}
+</div></code></pre>
+<ul>
+<li>
+<p>ReentrantLock</p>
+<ul>
+<li>ReentrantLock可以替代synchronized进行同步；ReentrantLock获取锁更安全；</li>
+<li>必须先获取到锁，再进入try {...}代码块，最后使用finally保证释放锁；可以使用tryLock()尝试获取锁。</li>
+<li>Condition可以替代wait和notify；Condition对象必须从Lock对象获取。</li>
+<li>Condition提供的await()、signal()、signalAll()原理和synchronized锁对象的wait()、notify()、notifyAll()是一致的，并且其行为也是一样的：
+<ul>
+<li>await()会释放当前锁，进入等待状态；</li>
+<li>signal()会唤醒某个等待线程；</li>
+<li>signalAll()会唤醒所有等待线程；</li>
+<li>唤醒线程从await()返回后需要重新获得锁。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>ReadWriteLock</p>
+<ul>
+<li>使用ReadWriteLock可以提高读取效率：
+<ul>
+<li>ReadWriteLock只允许一个线程写入；</li>
+<li>ReadWriteLock允许多个线程在没有写入时同时读取；</li>
+<li>ReadWriteLock适合读多写少的场景。</li>
+</ul>
+</li>
+<li>StampedLock
+<ul>
+<li>StampedLock提供了乐观读锁，可取代ReadWriteLock以进一步提升并发性能；</li>
+<li>StampedLock是不可重入锁。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1273-%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8%e9%9b%86%e5%90%88">1.2.7.3. 线程安全集合</h4>
+<ul>
+<li>使用java.util.concurrent包提供的线程安全的并发集合可以大大简化多线程编程：</li>
+<li>多线程同时读写并发集合是安全的；尽量使用Java标准库提供的并发集合，避免自己编写同步代码。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>interface</th>
+<th>non-thread-safe</th>
+<th>thread-safe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>List</td>
+<td>ArrayList</td>
+<td>CopyOnWriteArrayList</td>
+</tr>
+<tr>
+<td>Map</td>
+<td>HashMap</td>
+<td>ConcurrentHashMap</td>
+</tr>
+<tr>
+<td>Set</td>
+<td>HashSet / TreeSet</td>
+<td>CopyOnWriteArraySet</td>
+</tr>
+<tr>
+<td>Queue</td>
+<td>ArrayDeque / LinkedList</td>
+<td>ArrayBlockingQueue / LinkedBlockingQueue</td>
+</tr>
+<tr>
+<td>Deque</td>
+<td>ArrayDeque / LinkedList</td>
+<td>LinkedBlockingDeque</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>使用java.util.concurrent.atomic提供的原子操作可以简化多线程编程：</li>
+<li>原子操作实现了无锁的线程安全；适用于计数器，累加器等。</li>
+</ul>
+<h4 id="1274-%e7%ba%bf%e7%a8%8b%e6%b1%a0">1.2.7.4. 线程池</h4>
+<ul>
+<li>
+<p>JDK提供了ExecutorService实现了线程池功能：</p>
+<ul>
+<li>线程池内部维护一组线程，可以高效执行大量小任务；在执行多个任务的时候，使用Java标准库提供的线程池是非常方便的。我们提交的任务只需要实现Runnable接口，就可以让线程池去执行</li>
+<li>Executors提供了静态方法创建不同类型的ExecutorService；</li>
+<li>必须调用shutdown()关闭ExecutorService；</li>
+<li>FixedThreadPool：线程数固定的线程池；</li>
+<li>CachedThreadPool：线程数根据任务动态调整的线程池；</li>
+<li>SingleThreadExecutor：仅单线程执行的线程池。</li>
+<li>ThreadPoolExecutor: 可以指定线程池范围。</li>
+<li>ScheduledThreadPool 可以定期调度多个任务。
+<ul>
+<li><code>schedule(new Task(&quot;one-time&quot;), 1, TimeUnit.SECONDS);</code>// 1秒后执行一次性任务:</li>
+<li><code>scheduleAtFixedRate(new Task(&quot;fixed-rate&quot;), 2, 3, TimeUnit.SECONDS);</code>// 2秒后开始执行定时任务，每3秒执行,FixedRate是指任务总是以固定时间间隔触发，不管任务执行多长时间.</li>
+<li><code>scheduleWithFixedDelay(new Task(&quot;fixed-delay&quot;), 2, 3, TimeUnit.SECONDS);</code>// 2秒后开始执行定时任务，以3秒为间隔执行,FixedDelay是指，上一次任务执行完毕后，等待固定的时间间隔，再执行下一次任务.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>对线程池提交一个Callable任务，可以获得一个Future对象；</p>
+</li>
+<li>
+<p>可以用Future在将来某个时刻获取结果。</p>
+</li>
+<li>
+<p>一个<code>Future&lt;V&gt;</code>接口表示一个未来可能会返回的结果，它定义的方法有：</p>
+<ul>
+<li>get()：获取结果（可能会等待）,在调用get()时，如果异步任务已经完成，我们就直接获得结果。如果异步任务还没有完成，那么get()会阻塞，直到任务完成后才返回结果。</li>
+<li>get(long timeout, TimeUnit unit)：获取结果，但只等待指定的时间；</li>
+<li>cancel(boolean mayInterruptIfRunning)：取消当前任务；</li>
+<li>isDone()：判断任务是否已完成。</li>
+</ul>
+</li>
+<li>
+<p>CompletableFuture可以指定异步处理流程：</p>
+<ul>
+<li>thenAccept()处理正常结果；</li>
+<li>exceptional()处理异常结果；</li>
+<li>thenApplyAsync()用于串行化另一个CompletableFuture；</li>
+<li>anyOf()和allOf()用于并行化多个CompletableFuture。</li>
+</ul>
+</li>
+<li>
+<p>Fork/Join是一种基于“分治”的算法：通过分解任务，并行执行，最后合并结果得到最终结果。</p>
+<ul>
+<li>ForkJoinPool线程池可以把一个大任务分拆成小任务并行执行，任务类必须继承自RecursiveTask或RecursiveAction。</li>
+<li>使用Fork/Join模式可以进行并行计算以提高效率。</li>
+</ul>
+</li>
+<li>
+<p>ThreadLocal表示线程的“局部变量”，它确保每个线程的ThreadLocal变量都是各自独立的；</p>
+<ul>
+<li>ThreadLocal适合在一个线程的处理流程中保持上下文（避免了同一参数在所有方法中传递）；</li>
+<li>使用ThreadLocal要用try ... finally结构，并在finally中清除。</li>
+</ul>
+</li>
+</ul>
+<h2 id="13-%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99">1.3. 参考资料</h2>
+<ol>
+<li><a href="https://www.liaoxuefeng.com/wiki/1252599548343744">Java教程</a></li>
+</ol>
+
+    </body>
+    </html>
