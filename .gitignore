@@ -16,3 +16,7 @@ _site/
 *.exe
 *.ilk
 *.suo
+*.tlog
+
+_posts/3rd/opencv/OpenCV3.1.0学习/source/opencv-001/x64
+_posts/3rd/opencv/OpenCV3.1.0学习/source/opencv-001/x64
