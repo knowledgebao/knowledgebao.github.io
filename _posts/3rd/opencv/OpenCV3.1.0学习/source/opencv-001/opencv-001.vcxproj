@@ -106,7 +106,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\gwork\github\opencv3.4.7\build\include;C:\gwork\github\opencv3.4.7\build\include\opencv;C:\gwork\github\opencv3.4.7\build\include\opencv2</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./chapter;./other;./opencvUtil;C:\gwork\github\opencv3.4.7\build\include;C:\gwork\github\opencv3.4.7\build\include\opencv;C:\gwork\github\opencv3.4.7\build\include\opencv2</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,47 +152,51 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main-001.cpp" />
-    <ClCompile Include="main-002.cpp" />
-    <ClCompile Include="main-003.cpp" />
-    <ClCompile Include="main-004.cpp" />
-    <ClCompile Include="main-005.cpp" />
-    <ClCompile Include="main-006.cpp" />
-    <ClCompile Include="main-007.cpp" />
-    <ClCompile Include="main-008.cpp" />
-    <ClCompile Include="main-009.cpp" />
-    <ClCompile Include="main-010.cpp" />
-    <ClCompile Include="main-011.cpp" />
-    <ClCompile Include="main-012.cpp" />
-    <ClCompile Include="main-013.cpp" />
-    <ClCompile Include="main-014.cpp" />
-    <ClCompile Include="main-015.cpp" />
-    <ClCompile Include="main-016.cpp" />
-    <ClCompile Include="main-017.cpp" />
-    <ClCompile Include="main-018.cpp" />
-    <ClCompile Include="main-019.cpp" />
-    <ClCompile Include="main-020.cpp" />
-    <ClCompile Include="main-021.cpp" />
-    <ClCompile Include="main-022.cpp" />
-    <ClCompile Include="main-023.cpp" />
-    <ClCompile Include="main-024.cpp" />
-    <ClCompile Include="main-025.cpp" />
-    <ClCompile Include="main-026.cpp" />
-    <ClCompile Include="main-027.cpp" />
-    <ClCompile Include="main-028.cpp" />
-    <ClCompile Include="main-029.cpp" />
-    <ClCompile Include="main-030.cpp" />
-    <ClCompile Include="main-031.cpp" />
-    <ClCompile Include="main-032.cpp" />
-    <ClCompile Include="main-033.cpp" />
-    <ClCompile Include="main-034.cpp" />
-    <ClCompile Include="main-035.cpp" />
+    <ClCompile Include="chapter\main-001.cpp" />
+    <ClCompile Include="chapter\main-002.cpp" />
+    <ClCompile Include="chapter\main-003.cpp" />
+    <ClCompile Include="chapter\main-004.cpp" />
+    <ClCompile Include="chapter\main-005.cpp" />
+    <ClCompile Include="chapter\main-006.cpp" />
+    <ClCompile Include="chapter\main-007.cpp" />
+    <ClCompile Include="chapter\main-008.cpp" />
+    <ClCompile Include="chapter\main-009.cpp" />
+    <ClCompile Include="chapter\main-010.cpp" />
+    <ClCompile Include="chapter\main-011.cpp" />
+    <ClCompile Include="chapter\main-012.cpp" />
+    <ClCompile Include="chapter\main-013.cpp" />
+    <ClCompile Include="chapter\main-014.cpp" />
+    <ClCompile Include="chapter\main-015.cpp" />
+    <ClCompile Include="chapter\main-016.cpp" />
+    <ClCompile Include="chapter\main-017.cpp" />
+    <ClCompile Include="chapter\main-018.cpp" />
+    <ClCompile Include="chapter\main-019.cpp" />
+    <ClCompile Include="chapter\main-020.cpp" />
+    <ClCompile Include="chapter\main-021.cpp" />
+    <ClCompile Include="chapter\main-022.cpp" />
+    <ClCompile Include="chapter\main-023.cpp" />
+    <ClCompile Include="chapter\main-024.cpp" />
+    <ClCompile Include="chapter\main-025.cpp" />
+    <ClCompile Include="chapter\main-026.cpp" />
+    <ClCompile Include="chapter\main-027.cpp" />
+    <ClCompile Include="chapter\main-028.cpp" />
+    <ClCompile Include="chapter\main-029.cpp" />
+    <ClCompile Include="chapter\main-030.cpp" />
+    <ClCompile Include="chapter\main-031.cpp" />
+    <ClCompile Include="chapter\main-032.cpp" />
+    <ClCompile Include="chapter\main-033.cpp" />
+    <ClCompile Include="chapter\main-034.cpp" />
+    <ClCompile Include="chapter\main-035.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="cvtColor.cpp" />
-    <ClCompile Include="resize.cpp" />
+    <ClCompile Include="opencvUtil\opencv.cpp" />
+    <ClCompile Include="other\cvtColor.cpp" />
+    <ClCompile Include="other\resize.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="chapter.h" />
+    <ClInclude Include="chapter\chapter.h" />
+    <ClInclude Include="opencvUtil\opencv.h" />
+    <ClInclude Include="opencvUtil\ssn.h" />
+    <ClInclude Include="Other.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

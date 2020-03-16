@@ -1,8 +1,5 @@
 #pragma once
 
-int mytest(int argc, char** argv);
-int TestResize(int argc, char** argv);
-
 int chapter001(int argc, char** argv);
 int chapter002(int argc, char** argv);
 int chapter003(int argc, char** argv);

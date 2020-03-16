@@ -8,126 +8,144 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="opencvUtil">
+      <UniqueIdentifier>{4fa17e15-2625-4119-b35a-ae35e95b8bbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="other">
+      <UniqueIdentifier>{13a3bff0-6c5a-4cad-b45a-ce4f594ebecb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="main-001.cpp">
+    <ClCompile Include="opencvUtil\opencv.cpp">
+      <Filter>opencvUtil</Filter>
+    </ClCompile>
+    <ClCompile Include="chapter\main-001.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-002.cpp">
+    <ClCompile Include="chapter\main-002.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-003.cpp">
+    <ClCompile Include="chapter\main-003.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-004.cpp">
+    <ClCompile Include="chapter\main-004.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-005.cpp">
+    <ClCompile Include="chapter\main-005.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-006.cpp">
+    <ClCompile Include="chapter\main-006.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-007.cpp">
+    <ClCompile Include="chapter\main-007.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-008.cpp">
+    <ClCompile Include="chapter\main-008.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-009.cpp">
+    <ClCompile Include="chapter\main-009.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-010.cpp">
+    <ClCompile Include="chapter\main-010.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-011.cpp">
+    <ClCompile Include="chapter\main-011.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-012.cpp">
+    <ClCompile Include="chapter\main-012.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-013.cpp">
+    <ClCompile Include="chapter\main-013.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-014.cpp">
+    <ClCompile Include="chapter\main-014.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-015.cpp">
+    <ClCompile Include="chapter\main-015.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-016.cpp">
+    <ClCompile Include="chapter\main-016.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-017.cpp">
+    <ClCompile Include="chapter\main-017.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-018.cpp">
+    <ClCompile Include="chapter\main-018.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-019.cpp">
+    <ClCompile Include="chapter\main-019.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-020.cpp">
+    <ClCompile Include="chapter\main-020.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-021.cpp">
+    <ClCompile Include="chapter\main-021.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-022.cpp">
+    <ClCompile Include="chapter\main-022.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-023.cpp">
+    <ClCompile Include="chapter\main-023.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-024.cpp">
+    <ClCompile Include="chapter\main-024.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-025.cpp">
+    <ClCompile Include="chapter\main-025.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-026.cpp">
+    <ClCompile Include="chapter\main-026.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-027.cpp">
+    <ClCompile Include="chapter\main-027.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-028.cpp">
+    <ClCompile Include="chapter\main-028.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-029.cpp">
+    <ClCompile Include="chapter\main-029.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-030.cpp">
+    <ClCompile Include="chapter\main-030.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-031.cpp">
+    <ClCompile Include="chapter\main-031.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-032.cpp">
+    <ClCompile Include="chapter\main-032.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-033.cpp">
+    <ClCompile Include="chapter\main-033.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-034.cpp">
+    <ClCompile Include="chapter\main-034.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="main-035.cpp">
+    <ClCompile Include="chapter\main-035.cpp">
       <Filter>chapter</Filter>
     </ClCompile>
-    <ClCompile Include="cvtColor.cpp">
-      <Filter>chapter</Filter>
+    <ClCompile Include="other\cvtColor.cpp">
+      <Filter>other</Filter>
     </ClCompile>
-    <ClCompile Include="resize.cpp">
-      <Filter>chapter</Filter>
+    <ClCompile Include="other\resize.cpp">
+      <Filter>other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="chapter.h">
+    <ClInclude Include="opencvUtil\opencv.h">
+      <Filter>opencvUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="opencvUtil\ssn.h">
+      <Filter>opencvUtil</Filter>
+    </ClInclude>
+    <ClInclude Include="chapter\chapter.h">
       <Filter>chapter</Filter>
+    </ClInclude>
+    <ClInclude Include="Other.h">
+      <Filter>other</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
