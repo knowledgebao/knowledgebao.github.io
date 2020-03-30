@@ -68,7 +68,7 @@ git branch branch-name commid
 git checkout branch-name
 git checkout branch-name2 origin/branch-name
 
-1. 切换分支，如果本地没有，则从远端下载分支后再切换，如果远端也没有，则执行失败。
+1. 切换分支，如果本地没有，则从远端下载分支后再切换，如果远端也没有，则执行失败。当然前提是通过`get fetch`更新了远端分支信息到本地。
 2. 第二条命令可以指定本地分支名称与远端分支名称不一样(一般这种情况不存在)。
 
 ### 1.1.6. 创建并切换分支

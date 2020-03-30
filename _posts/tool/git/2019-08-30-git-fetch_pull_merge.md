@@ -14,11 +14,12 @@ tag: git
   - [1.2. pull](#12-pull)
   - [1.3. fetch](#13-fetch)
   - [1.4. 实用功能](#14-%e5%ae%9e%e7%94%a8%e5%8a%9f%e8%83%bd)
-    - [1.4.1. 合并本地某分支到当前分支](#141-%e5%90%88%e5%b9%b6%e6%9c%ac%e5%9c%b0%e6%9f%90%e5%88%86%e6%94%af%e5%88%b0%e5%bd%93%e5%89%8d%e5%88%86%e6%94%af)
-    - [1.4.2. 合并远端对应分支到当前分支](#142-%e5%90%88%e5%b9%b6%e8%bf%9c%e7%ab%af%e5%af%b9%e5%ba%94%e5%88%86%e6%94%af%e5%88%b0%e5%bd%93%e5%89%8d%e5%88%86%e6%94%af)
-    - [1.4.3. rebase远端对应分支到本地分支](#143-rebase%e8%bf%9c%e7%ab%af%e5%af%b9%e5%ba%94%e5%88%86%e6%94%af%e5%88%b0%e6%9c%ac%e5%9c%b0%e5%88%86%e6%94%af)
-    - [1.4.4. 合并远端指定分支到当前分支](#144-%e5%90%88%e5%b9%b6%e8%bf%9c%e7%ab%af%e6%8c%87%e5%ae%9a%e5%88%86%e6%94%af%e5%88%b0%e5%bd%93%e5%89%8d%e5%88%86%e6%94%af)
-    - [1.4.5. rebase远端指定分支到当前分支](#145-rebase%e8%bf%9c%e7%ab%af%e6%8c%87%e5%ae%9a%e5%88%86%e6%94%af%e5%88%b0%e5%bd%93%e5%89%8d%e5%88%86%e6%94%af)
+    - [1.4.1. 更新远端的新分支](#141-%e6%9b%b4%e6%96%b0%e8%bf%9c%e7%ab%af%e7%9a%84%e6%96%b0%e5%88%86%e6%94%af)
+    - [1.4.2. 合并本地某分支到当前分支](#142-%e5%90%88%e5%b9%b6%e6%9c%ac%e5%9c%b0%e6%9f%90%e5%88%86%e6%94%af%e5%88%b0%e5%bd%93%e5%89%8d%e5%88%86%e6%94%af)
+    - [1.4.3. 合并远端对应分支到当前分支](#143-%e5%90%88%e5%b9%b6%e8%bf%9c%e7%ab%af%e5%af%b9%e5%ba%94%e5%88%86%e6%94%af%e5%88%b0%e5%bd%93%e5%89%8d%e5%88%86%e6%94%af)
+    - [1.4.4. rebase远端对应分支到本地分支](#144-rebase%e8%bf%9c%e7%ab%af%e5%af%b9%e5%ba%94%e5%88%86%e6%94%af%e5%88%b0%e6%9c%ac%e5%9c%b0%e5%88%86%e6%94%af)
+    - [1.4.5. 合并远端指定分支到当前分支](#145-%e5%90%88%e5%b9%b6%e8%bf%9c%e7%ab%af%e6%8c%87%e5%ae%9a%e5%88%86%e6%94%af%e5%88%b0%e5%bd%93%e5%89%8d%e5%88%86%e6%94%af)
+    - [1.4.6. rebase远端指定分支到当前分支](#146-rebase%e8%bf%9c%e7%ab%af%e6%8c%87%e5%ae%9a%e5%88%86%e6%94%af%e5%88%b0%e5%bd%93%e5%89%8d%e5%88%86%e6%94%af)
   - [1.5. 参考资料](#15-%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99)
 
 ## 1.1. merge
@@ -207,7 +208,7 @@ FETCH_HEAD 指的是: 某个branch在服务器上的最新状态'.
   
     具体细节分2步走：
     a. 创建并更新本地远程分支。即创建并更新 origin/xxx 分支，拉取代码到 origin/xxx 分支上。
-    b. 在 FETCH_HEAD 中设定当前分支-origin/当前分支对应，如直接到时候git merge就可以将origin/abc合并到abc分支上。
+    b. 在 FETCH_HEAD 中设定当前分支-origin/当前分支对应，如直接到时候`git merge`就可以将`origin/abc`合并到abc分支上。
     缺点：会拉取当前项目的所有分支的commit。这样没必要，如当前项目有很多人在参与，那么就会有很多分支，那么其他分支的提交也会拉取下来，你得等半天下下来，网速不好就蛋疼了。
 
 2. `git fetch origin`
@@ -234,7 +235,13 @@ FETCH_HEAD 指的是: 某个branch在服务器上的最新状态'.
 
 ## 1.4. 实用功能
 
-### 1.4.1. 合并本地某分支到当前分支
+### 1.4.1. 更新远端的新分支
+
+`git fetch`
+
+只有通过git fetch获取的远端的分支列表，才可以直接checkout，不会自动更新远端分支。
+
+### 1.4.2. 合并本地某分支到当前分支
 
 `git merge <name> --no-ff`:  
 合并分支name到本分支
@@ -243,25 +250,25 @@ FETCH_HEAD 指的是: 某个branch在服务器上的最新状态'.
 --no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并。
 --ff-only： 如果不能快进就放弃合并
 
-### 1.4.2. 合并远端对应分支到当前分支
+### 1.4.3. 合并远端对应分支到当前分支
 
 `git pull`
 
 默认行为是 `git fetch + git merge` 更确切的说是 `git fetch` + `git merge FETCH_HEAD` 的缩写。
 
-### 1.4.3. rebase远端对应分支到本地分支
+### 1.4.4. rebase远端对应分支到本地分支
 
 `git pull --rebase`
 
 实际是  `git fetch` + `git rebase FETCH_HEAD` 的缩写。
 
-### 1.4.4. 合并远端指定分支到当前分支
+### 1.4.5. 合并远端指定分支到当前分支
 
 `git fetch origin otherbranch` + `git merge FETCH_HEAD`
 
 设定当前分支的 FETCH_HEAD 为远程服务器的 otherbranch 分支，对 FETCH_HEAD 执行 merge 操作
 
-### 1.4.5. rebase远端指定分支到当前分支
+### 1.4.6. rebase远端指定分支到当前分支
 
 `git fetch origin otherbranch` + `git rebase FETCH_HEAD`
 

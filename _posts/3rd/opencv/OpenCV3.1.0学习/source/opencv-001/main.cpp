@@ -48,8 +48,8 @@ void testOpencv_h() {
 
 int main(int argc, char** argv)
 {
-	testOpencv_h();
-	//mytest(argc, argv);
+	//testOpencv_h();
+	mytest(argc, argv);
 	//TestResize(argc, argv);
 	// read image
 	//chapter001(argc, argv);

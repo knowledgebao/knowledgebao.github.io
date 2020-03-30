@@ -215,8 +215,8 @@ int testBGR2BGRA() {
 
 int mytest(int argc, char** argv)
 {
-	//testColor();
-	testBGR2BGRA();
+	testColor();
+	//testBGR2BGRA();
 	return 0;
 }
 
