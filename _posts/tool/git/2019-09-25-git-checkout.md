@@ -52,7 +52,7 @@ tag: git
 
 `git checkout -- file_name`  从INDEX中签出file_name文件，覆盖工作区文件。
 `git checkout -- .`          从INDEX中签出所有文件，覆盖工作区文件。
-`git checkout commit_id -- file_name`  #//从commit_id中取文件file_name到本地,commit_id可以是分支名，可以是tag名，可以是某一次提交的commit_id,本质上都是一个commit hash值
+`git checkout commit_id -- file_name/path_name`  #//从commit_id中取文件file_name/目录path_name到本地,commit_id可以是分支名，可以是tag名，可以是某一次提交的commit_id,本质上都是一个commit hash值
 说明：如果文件名与branch_name不重复,--可以省略
 
 ### 1.2.4. 切换到某一次commit提交

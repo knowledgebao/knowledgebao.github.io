@@ -6,13 +6,19 @@ description: git-cherry-pick
 tag: git
 
 ---
-# git cherry-pick
+# 1. git cherry-pick
 
-## 简介
+- [1. git cherry-pick](#1-git-cherry-pick)
+  - [1.1. 简介](#11-%e7%ae%80%e4%bb%8b)
+  - [1.2. 命令](#12-%e5%91%bd%e4%bb%a4)
+  - [1.3. 常用方法](#13-%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95)
+  - [1.4. 参考资料](#14-%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99)
+
+## 1.1. 简介
 
 git cherry-pick可以理解为”挑拣”提交，它会获取某一个分支的单笔提交，并作为一个新的提交引入到你当前分支上。 当我们需要在本地合入其他分支的提交时，如果我们不想对整个分支进行合并，而是只想将某一次提交合入到本地当前分支上，那么就要使用git cherry-pick了。
 
-## 命令
+## 1.2. 命令
 
 git cherry-pick -h
 
@@ -45,7 +51,7 @@ git cherry-pick -h
                           保持多余的、空的提交
 ```
 
-## 常用方法
+## 1.3. 常用方法
 
 - `git cherry-pick 2555c6e`
     将2555c6e合并到当前分支，如果有冲突，解决冲突，解决冲突后需要git commit手动进行提交，或者git add .后直接使用git cherry-pick --continue继续。
@@ -58,6 +64,6 @@ git cherry-pick -h
 - `git cherry-pick ..< branchname >`或`git cherry-pick ^HEAD < branchname >`
     应用所有提交引入的更改，这些提交是branchname的祖先但不是HEAD的祖先。也就是分叉后的所有提交
 
-## 参考资料
+## 1.4. 参考资料
 
 1. [[Git] Git整理(五) git cherry-pick的使用](https://blog.csdn.net/FightFightFight/article/details/81039050)
