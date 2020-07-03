@@ -1,0 +1,90 @@
+[apply]
+    whitespace = nowarn
+[core]
+    # pager = cat
+	fscache = true
+    symlinks = true
+    quotepath = false
+	preloadindex = true
+    autocrlf = input
+        # 1) true:             x -> LF -> CRLF
+        # 2) input:            x -> LF -> LF
+        # 3) false:            x -> x -> x
+[pager]
+	diff = false
+    branch = false
+[push]
+    default = simple
+[pull]
+    default = simple
+[color]
+    diff = auto
+    status = true
+    branch = auto
+    interactive = auto
+    ui = auto
+    log = true
+[diff]  
+    tool = vimdiff
+[merge]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[mergetool]
+    prompt = false
+[status]
+    submodulesummary = -1
+[format]
+    numbered = auto
+[alias]
+    co = checkout
+    ck = checkout --track -b  # checkout and tracked
+    ci = commit
+    cl = clean -x -d -f  # force clean and remove ignored files.
+    st = status
+	sst = status --ignore-submodules=all
+    pl = pull
+    ps = push
+	lb = remote show origin                   # list branch
+    ll  = log --graph --oneline --abbrev-commit --decorate --first-parent --pretty='tformat:%ai %C(auto) %h %d %s %Cblue<%an %ar>'
+    lg  = log --graph --oneline --abbrev-commit --decorate --branches --pretty='format:%C(auto) %h %d %s %Cblue<%an %ar>'
+    lga = log --graph --oneline --abbrev-commit --decorate --all --pretty='format:%C(auto) %h %d %s %Cblue<%an %ar>'
+    lgb = log --graph --oneline --abbrev-commit --decorate --all --simplify-by-decoration --pretty='format:%C(auto) %h %d %s %Cblue<%an %ar>'
+    li = status --short --porcelain --ignored # list ignored
+	lo = ls-files -o '--exclude=build/*' '--exclude=.vscode/*' # list others
+    cp = cherry-pick
+    ca = commit -a
+    br = branch
+    df = diff --ignore-cr-at-eol --ignore-space-at-eol
+    dc = diff --cached --ignore-cr-at-eol --ignore-space-at-eol
+    m = merge
+    dt = difftool
+    mt = mergetool
+    desc = describe --tags --long
+[http]
+    sslVerify = true
+    postBuffer = 1048576000
+# [filter "lfs"]
+#    clean = git-lfs clean -- %f
+#    smudge = git-lfs smudge -- %f
+#    required = true
+#    process = git-lfs filter-process
+[gc]
+	auto = 256
+
+[url "git@git-pd.megvii-inc.com:"]
+    insteadOf = https://git-pd.megvii-inc.com/
+
+
+# # vimdiff 
+# ]c :        - next difference
+# [c :        - previous difference
+# do          - diff obtain
+# dp          - diff put
+# zo          - open folded text
+# zc          - close folded text
+# :diffupdate - re-scan the files for differences
+
+[user]
+	email = guoxingbao@megvii.com.cn
+	name = guoxingbao
