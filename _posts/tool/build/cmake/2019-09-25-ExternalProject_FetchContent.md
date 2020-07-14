@@ -7,17 +7,16 @@ tag: cmake
 
 ---
 
-
 # 1. 使用及编译第三方库
 
-- [1. 使用及编译第三方库](#1-%e4%bd%bf%e7%94%a8%e5%8f%8a%e7%bc%96%e8%af%91%e7%ac%ac%e4%b8%89%e6%96%b9%e5%ba%93)
-  - [1.1. 简介](#11-%e7%ae%80%e4%bb%8b)
+- [1. 使用及编译第三方库](#1-使用及编译第三方库)
+  - [1.1. 简介](#11-简介)
   - [1.2. ExternalProject](#12-externalproject)
-    - [1.2.1. 说明](#121-%e8%af%b4%e6%98%8e)
-    - [1.2.2. 函数](#122-%e5%87%bd%e6%95%b0)
-      - [1.2.2.1. ExternalProject_Add](#1221-externalprojectadd)
-        - [1.2.2.1.1. 目录参数](#12211-%e7%9b%ae%e5%bd%95%e5%8f%82%e6%95%b0)
-        - [1.2.2.1.2. 下载步骤参数](#12212-%e4%b8%8b%e8%bd%bd%e6%ad%a5%e9%aa%a4%e5%8f%82%e6%95%b0)
+    - [1.2.1. 说明](#121-说明)
+    - [1.2.2. 函数](#122-函数)
+      - [1.2.2.1. ExternalProject_Add](#1221-externalproject_add)
+        - [1.2.2.1.1. 目录参数](#12211-目录参数)
+        - [1.2.2.1.2. 下载步骤参数](#12212-下载步骤参数)
         - [1.2.2.1.3. Update/Patch Step Options](#12213-updatepatch-step-options)
         - [1.2.2.1.4. Configure Step Options](#12214-configure-step-options)
         - [1.2.2.1.5. Build Step Options](#12215-build-step-options)
@@ -27,22 +26,22 @@ tag: cmake
         - [1.2.2.1.9. Terminal Access Options](#12219-terminal-access-options)
         - [1.2.2.1.10. Target Options](#122110-target-options)
         - [1.2.2.1.11. Miscellaneous Options](#122111-miscellaneous-options)
-      - [1.2.2.2. ExternalProject_Get_Property](#1222-externalprojectgetproperty)
-      - [1.2.2.3. ExternalProject_Add_Step](#1223-externalprojectaddstep)
-      - [1.2.2.4. ExternalProject_Add_StepTargets](#1224-externalprojectaddsteptargets)
-      - [1.2.2.5. ExternalProject_Add_StepDependencies](#1225-externalprojectaddstepdependencies)
+      - [1.2.2.2. ExternalProject_Get_Property](#1222-externalproject_get_property)
+      - [1.2.2.3. ExternalProject_Add_Step](#1223-externalproject_add_step)
+      - [1.2.2.4. ExternalProject_Add_StepTargets](#1224-externalproject_add_steptargets)
+      - [1.2.2.5. ExternalProject_Add_StepDependencies](#1225-externalproject_add_stepdependencies)
   - [1.3. FetchContent](#13-fetchcontent)
-    - [1.3.1. FetchContent说明](#131-fetchcontent%e8%af%b4%e6%98%8e)
-      - [1.3.1.1. FetchContent_Declare](#1311-fetchcontentdeclare)
-      - [1.3.1.2. FetchContent_Populate](#1312-fetchcontentpopulate)
-      - [1.3.1.3. FetchContent_GetProperties](#1313-fetchcontentgetproperties)
-      - [1.3.1.4. FetchContent_MakeAvailable](#1314-fetchcontentmakeavailable)
-  - [1.4. 参考资料](#14-%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99)
+    - [1.3.1. FetchContent说明](#131-fetchcontent说明)
+      - [1.3.1.1. FetchContent_Declare](#1311-fetchcontent_declare)
+      - [1.3.1.2. FetchContent_Populate](#1312-fetchcontent_populate)
+      - [1.3.1.3. FetchContent_GetProperties](#1313-fetchcontent_getproperties)
+      - [1.3.1.4. FetchContent_MakeAvailable](#1314-fetchcontent_makeavailable)
+  - [1.4. 参考资料](#14-参考资料)
 
 ## 1.1. 简介
 
-ExternalProject是老的第三方管理API
-FetchContent是3.11（大约发行于2018年4月份左右）开始引入的一个模块。这个模块可以看成是原来 ExternalProject 模块的一个升级。也就是说FetchContent可以替换ExternalProject
+ExternalProject 是老的第三方管理API
+FetchContent 是3.11（大约发行于2018年4月份左右）开始引入的一个模块。这个模块可以看成是原来 ExternalProject 模块的一个升级。也就是说 FetchContent 可以替换ExternalProject
 
 ## 1.2. ExternalProject
 
@@ -54,7 +53,7 @@ FetchContent是3.11（大约发行于2018年4月份左右）开始引入的一�
 
 #### 1.2.2.1. ExternalProject_Add
 
-ExternalProject_Add 创建一个外部target,Download/Update/patch,configure,build,install and test.比FetchContent_Declare功能强大,相当于FetchContent_Declare/FetchContent_Populate的组合,比较复杂.可以定制外部项目
+ExternalProject_Add 创建一个外部target,Download/Update/patch,configure,build,install and test.比 FetchContent_Declare 功能强大,相当于FetchContent_Declare/FetchContent_Populate 的组合,比较复杂.可以定制外部项目
 
 ##### 1.2.2.1.1. 目录参数
 

@@ -1,0 +1,17 @@
+Windows Registry Editor Version 5.00
+
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\background\shell\Conda]
+
+[-HKEY_CLASSES_ROOT\Directory\Background\shell\code]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Conda_Activate]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Conda_Jupyter]
+
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\background\shell\Mingw64]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\background\shell\msys2_shell]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\background\shell\Powershell]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\background\shell\OpenShellAdmin]
+
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\background\shell\git_shell]
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\background\shell\git_gui]
+
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Directory\background\shell\Cmder]

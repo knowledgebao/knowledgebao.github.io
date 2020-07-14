@@ -11,14 +11,14 @@ tag: vscode
 
 # vscode中编辑markdown的工具
 
-- [vscode中编辑markdown的工具](#vscode%e4%b8%ad%e7%bc%96%e8%be%91markdown%e7%9a%84%e5%b7%a5%e5%85%b7)
+- [vscode中编辑markdown的工具](#vscode中编辑markdown的工具)
   - [markdown all in one](#markdown-all-in-one)
-    - [支持功能](#%e6%94%af%e6%8c%81%e5%8a%9f%e8%83%bd)
+    - [支持功能](#支持功能)
   - [markdown pdf](#markdown-pdf)
   - [markdown TOC](#markdown-toc)
   - [Markdown Preview Enhanced](#markdown-preview-enhanced)
   - [markdownlint](#markdownlint)
-  - [参考网址](#%e5%8f%82%e8%80%83%e7%bd%91%e5%9d%80)
+  - [参考网址](#参考网址)
 
 ## markdown all in one
 
@@ -69,6 +69,14 @@ tag: vscode
 
 1. 转换为html,可以由markdown all in one代替.
 2. 除了转换为html还可以转换为pdf,jpg,png等
+3. 转换pdf的时候可以设置 css 风格。
+   - 参考：[含css文件](https://blog.csdn.net/luckybaimao/article/details/81140597),已经下载下来，详见 《markdown.css》
+   - [N多种CSS风格](http://jasonm23.github.io/markdown-css-themes/)
+   - 设置CSS方法1：setting.json："markdown-pdf.styles": ["D:\\gwork\\knowledgebao\\knowledgebao.github.io\\_posts\\ide\\vscode\\markdown.css"],
+   - 设置CSS方法2：File → Preferences → Settings → Extensions → markdown-pdf configurations → styles 中 add 一个 css 文件路径
+4. 默认会自动下载chrome,如果已安装chrom浏览器，或下载失败，则可在配置中指定chrome.exe路径。
+   - 方法1：更 markdown-pdf.executablePath 配置项的值为chrom程序路径。
+   - 方法2：setting.json："markdown-pdf.executablePath": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
 
 ## markdown TOC
 

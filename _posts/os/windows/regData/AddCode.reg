@@ -1,0 +1,18 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\code]
+"SubCommands"="Conda_Activate;Conda_Jupyter;"
+"Icon"=""
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Conda_Activate]
+@="Activate"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Conda_Activate\command]
+@="C:\\\\windows\\\\system32\\\\cmd /K C:\\\\Anaconda3\\\\Scripts\\\\activate"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Conda_Jupyter]
+@="Jupyter"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Conda_Jupyter\command]
+@="C:\\\\windows\\\\system32\\\\cmd /K C:\\Anaconda3\\python.exe C:\\Anaconda3\\cwp.py C:\\Anaconda3 C:\\Anaconda3\\python.exe C:\\Anaconda3\\Scripts\\jupyter-notebook-script.py D:\\"
+

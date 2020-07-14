@@ -72,10 +72,6 @@
 [gc]
 	auto = 256
 
-[url "git@git-pd.megvii-inc.com:"]
-    insteadOf = https://git-pd.megvii-inc.com/
-
-
 # # vimdiff 
 # ]c :        - next difference
 # [c :        - previous difference
@@ -86,5 +82,5 @@
 # :diffupdate - re-scan the files for differences
 
 [user]
-	email = guoxingbao@megvii.com.cn
-	name = guoxingbao
+	email = gxb@mail.com
+	name = guoxb

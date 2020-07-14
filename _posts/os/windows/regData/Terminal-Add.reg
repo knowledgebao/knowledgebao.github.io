@@ -1,0 +1,64 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\Background\shell\terminal]
+"SubCommands"="win_termianl;terminal_cmder;terminal_mingw64;terminal_powershell;terminal_powershell_admin;Conda_Activate;Conda_Jupyter;cmd"
+"Icon"="powershell.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\win_termianl]
+@="win_termianl"
+"Icon"="C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.3.2651.0_x64__8wekyb3d8bbwe\\wt.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\win_termianl\command]
+@="C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.3.2651.0_x64__8wekyb3d8bbwe\\wt.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\terminal_mingw64]
+@="Mingw64"
+"Icon"="D:\\msys64\\mingw64.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\terminal_mingw64\command]
+@="D:\\msys64\\msys2_shell.cmd -mingw64 -here"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\terminal_powershell]
+@="powershell"
+"Icon"="powershell.exe"
+"Extended"=""
+"NoWorkingDirectory"=""
+"ShowBasedOnVelocityId"=dword:00639bc8
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\terminal_powershell\command]
+@="powershell.exe -noexit -command Set-Location -literalPath '%V'"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\terminal_powershell_admin]
+@="powershell_admin"
+"Icon"="powershell.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\terminal_powershell_admin\command]
+@="powershell.exe -command Start-Process powershell -ArgumentList \\\"-noexit\\\",\\\"Set-Location -literalPath '%V'\\\" -Verb runAs"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\terminal_cmder]
+@="cmder"
+"Icon"="D:\\software\\cmder\\icons\\cmder.ico"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\terminal_cmder\command]
+@="D:\\software\\cmder\\Cmder.exe %V"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Conda_Activate]
+@="Conda_Activate"
+"Icon"="cmd.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Conda_Activate\command]
+@="cmd.exe /K C:\\Anaconda3\\Scripts\\activate"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Conda_Jupyter]
+@="Conda_Jupyter"
+"Icon"="cmd.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\Conda_Jupyter\command]
+@="cmd.exe /K C:\\Anaconda3\\python.exe C:\\Anaconda3\\cwp.py C:\\Anaconda3 C:\\Anaconda3\\python.exe C:\\Anaconda3\\Scripts\\jupyter-notebook-script.py %V"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\cmd]
+@="cmd"
+"Icon"="cmd.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CommandStore\shell\cmd\command]
+@="cmd.exe %V"

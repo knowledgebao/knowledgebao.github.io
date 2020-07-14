@@ -55,11 +55,11 @@ pts,dts:AV_TIME_BASE为单位(微秒)  #define AV_TIME_BASE   1000000
 
 av_rescale_q(a,b,c)作用相当于执行a*b/c
 1. InputStream(AV_TIME_BASE)到AVPacket(AVStream->time_base)
- pkt->dts = av_rescale_q(inputStream->dts, AV_TIME_BASE_Q, AVStream->time_base); 
+ pkt->dts = av_rescale_q(inputStream->dts, AV_TIME_BASE_Q, AVStream->time_base);
  pkt->dts = inputStream->dts*AV_TIME_BASE_Q/AVStream->time_base;
- 
+
 2. AVPacket(AVStream->time_base)到InputStream(AV_TIME_BASE)
- inputStream->dts = av_rescale_q(pkt->dts, AVStream->time_base, AV_TIME_BASE_Q); 
+ inputStream->dts = av_rescale_q(pkt->dts, AVStream->time_base, AV_TIME_BASE_Q);
  inputStream->dts = pkt->dts * AVStream->time_base / AV_TIME_BASE_Q
 
 ## 后记

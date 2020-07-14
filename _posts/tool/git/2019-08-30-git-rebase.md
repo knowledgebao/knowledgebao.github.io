@@ -11,13 +11,13 @@ tag: git
 # 1. git rebase
 
 - [1. git rebase](#1-git-rebase)
-  - [1.1. 基本功能](#11-%e5%9f%ba%e6%9c%ac%e5%8a%9f%e8%83%bd)
-    - [1.1.1. 参数](#111-%e5%8f%82%e6%95%b0)
-    - [1.1.2. 合并commit](#112-%e5%90%88%e5%b9%b6commit)
-    - [1.1.3. 合并远程commit](#113-%e5%90%88%e5%b9%b6%e8%bf%9c%e7%a8%8bcommit)
-    - [1.1.4. 当前branch的某一段commit粘贴到另一个分支上](#114-%e5%bd%93%e5%89%8dbranch%e7%9a%84%e6%9f%90%e4%b8%80%e6%ae%b5commit%e7%b2%98%e8%b4%b4%e5%88%b0%e5%8f%a6%e4%b8%80%e4%b8%aa%e5%88%86%e6%94%af%e4%b8%8a)
-    - [1.1.5. 将其它分支的某一段commit粘贴到本分支上](#115-%e5%b0%86%e5%85%b6%e5%ae%83%e5%88%86%e6%94%af%e7%9a%84%e6%9f%90%e4%b8%80%e6%ae%b5commit%e7%b2%98%e8%b4%b4%e5%88%b0%e6%9c%ac%e5%88%86%e6%94%af%e4%b8%8a)
-  - [1.2. 参考资料](#12-%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99)
+  - [1.1. 基本功能](#11-基本功能)
+    - [1.1.1. 参数](#111-参数)
+    - [1.1.2. 合并commit](#112-合并commit)
+    - [1.1.3. 合并远程commit](#113-合并远程commit)
+    - [1.1.4. 当前branch的某一段commit粘贴到另一个分支上](#114-当前branch的某一段commit粘贴到另一个分支上)
+    - [1.1.5. 将其它分支的某一段commit粘贴到本分支上](#115-将其它分支的某一段commit粘贴到本分支上)
+  - [1.2. 参考资料](#12-参考资料)
 
 ## 1.1. 基本功能
 
@@ -41,8 +41,9 @@ tag: git
 
 1. 其中-i的意思是--interactive，即弹出交互式的界面让用户编辑完成合并操作
 2. [startpoint]  [endpoint]则指定了一个编辑区间的commitID，如果不指定[endpoint]，则该区间的终点默认是当前分支HEAD(或FETCH_HEAD,如果有的话)所指向的commit(注：该区间指定的是一个前开后闭的区间)。当然commit可以是HEAD~3 或者 HEAD^^^等可以代替commitID的内容
-3. 根据提示(可能需要输入大写E)进入修改,除去startpoint不需要修改，其它行将pick修改为squash，同时修改注释，然后保存OK,pick就是使用这个commit，squash意思是合并到pick的这个commit。 
+3. 根据提示(可能需要输入大写E)进入修改,除去startpoint不需要修改，其它行将pick修改为squash，同时修改注释，然后保存OK,pick就是使用这个commit，squash意思是合并到pick的这个commit。
 4. 如果你异常退出了 vi 窗口，不要紧张 `git rebase --edit-todo` 这时候会一直处在这个编辑的模式里，我们可以回去继续编辑，修改完保存一下：
+5. 如果 endpoint 不是分支的HAND，则合并的新
 
 说明：
 

@@ -11,12 +11,14 @@ _site/
 *.log
 *.user
 *.obj
-*.pdf
 *.pdb
 *.exe
 *.ilk
 *.suo
 *.tlog
+
+_posts/tool/build/cmake/code/*/build
+_posts/tool/build/cmake/code/*/*/build
 
 _posts/3rd/opencv/OpenCV3.1.0学习/source/opencv-001/x64
 _posts/3rd/opencv/OpenCV3.1.0学习/source/opencv-001/x64
